@@ -1,3 +1,5 @@
+import { colors } from "assets/colors";
+
 const getColorWithCorrectLength = (color: string) => {
 	if (color.length === 3) {
 		const colorSplitted = color.split("");
@@ -37,3 +39,6 @@ const getHexColorLuma = (color: string) => {
  * Check if a string is a light hex color
  */
 export const isLightHexColor = (color: string) => getHexColorLuma(color)! < 190;
+
+export const getTextColor = (color: string) =>
+	isLightHexColor(color) ? colors.white : colors.blackText;

@@ -3,7 +3,7 @@
 import { categories } from "assets/data";
 import { Icon } from "components/Icon";
 import { MonthBudget } from "types/budget";
-import { isLightHexColor } from "utils/color";
+import { getTextColor } from "utils/color";
 import { formatMoney } from "utils/money";
 
 interface Props {
@@ -29,7 +29,7 @@ export const ExpensesPerCategory = ({ budget, expenses }: Props) => {
 								className="flex flex-row gap-2 w-3/4 items-center p-2 rounded-l"
 								style={{
 									backgroundColor: category.color,
-									color: isLightHexColor(category.color) ? "#fff" : undefined,
+									color: getTextColor(category.color),
 								}}
 							>
 								<Icon icon={category.icon} size={4} />

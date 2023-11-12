@@ -1,11 +1,11 @@
 "use client";
 
-import { budget, categories, transactions } from "assets/data";
-import { MonthIndicator } from "components/MonthIndicator";
+import { budget as budgetData, categories, transactions } from "assets/data";
+import { Header } from "components/Header";
+import { NoBudget } from "components/NoBudget";
 import { BudgetsCarousel } from "components/StoresCarousel";
 import { TransactionInOut } from "components/TransactionInOut";
-import { useRouter } from "next/navigation";
-import { FaArrowLeft } from "react-icons/fa";
+import { useCurrentBudget } from "contexts/current-budget";
 import { MonthID } from "types/budget";
 import { TransactionTypeEnum } from "types/enums/transaction-type";
 import { Transaction } from "types/transaction";
@@ -13,7 +13,7 @@ import {
 	getDay,
 	getMonthId,
 	getMonthShortName,
-	sortDateDDMM,
+	sortDateYYYYMMDD,
 } from "utils/date";
 
 type TransactionsByDate = Record<string, Array<Transaction>>;
@@ -23,9 +23,9 @@ const getTransactionsByDate = (): TransactionsByDateArray => {
 	const temp: TransactionsByDate = {};
 
 	transactions.forEach((t) => {
-		const day = `${getDay(t.createdAt)}-${getMonthId(
+		const day = `${t.createdAt.getUTCFullYear()}-${getMonthId(
 			t.createdAt,
-		)}-${t.createdAt.getUTCFullYear()}`;
+		)}-${getDay(t.createdAt)}`;
 
 		if (!temp[day]) {
 			temp[day] = [];
@@ -40,34 +40,26 @@ const getTransactionsByDate = (): TransactionsByDateArray => {
 		);
 	}
 
-	return Object.entries(temp).sort(([a], [b]) => sortDateDDMM(a, b));
+	return Object.entries(temp).sort(([a], [b]) => sortDateYYYYMMDD(a, b));
 };
 
 const transactionsByDate = getTransactionsByDate();
 
 const Transactions = () => {
-	const router = useRouter();
+	const { getCurrentBudgetMonthId } = useCurrentBudget();
+
+	const budget = budgetData.budgets[getCurrentBudgetMonthId()]!;
+
+	if (!budget) {
+		return <NoBudget title="Transações" hasBackBtn hasMonthIndicator />;
+	}
 
 	return (
 		<>
-			<section>
-				<div className="bg-primary container-padding text-center items-center relative">
-					<button
-						className="rounded-full bg-secondary text-secondary-content p-2 absolute top-1/4 left-4"
-						onClick={() => router.back()}
-					>
-						<FaArrowLeft />
-					</button>
-					<div className="w-full">
-						<h1 className="font-black text-xl">Transações</h1>
-					</div>
-				</div>
-
-				<MonthIndicator />
-			</section>
+			<Header title="Transações" hasBackBtn hasMonthIndicator />
 
 			<main className="min-h-[100dvh] w-full flex flex-col pt-2">
-				<BudgetsCarousel budget={budget.budgets[getMonthId()]!} />
+				<BudgetsCarousel budget={budget} />
 
 				<section className="container-padding flex flex-col gap-2">
 					{transactionsByDate.map(([date, dateTransactions]) => {

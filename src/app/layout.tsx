@@ -1,20 +1,15 @@
+import { Container } from "components/Container";
+import Providers from "contexts/providers";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
 import Head from "next/head";
+import { ReactNode } from "react";
+
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-import { ReactNode } from "react";
-import Providers from "utils/providers";
-import { NavBar } from "components/NavBar";
 
 interface Props {
 	children: ReactNode;
 }
-
-const roboto = Roboto({
-	weight: ["100", "300", "400", "500", "700", "900"],
-	subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
 	title: "Econominhas",
@@ -29,10 +24,10 @@ const RootLayout: FC<Props> = ({ children }) => {
 				<link rel="apple-touch-icon" href="/icon-192x192.png" />
 				<meta name="theme-color" content="#00c9fe" />
 			</Head>
-			<body className={`${roboto.className} relative`}>
+
+			<body>
 				<Providers>
-					{children}
-					<NavBar />
+					<Container>{children}</Container>
 				</Providers>
 			</body>
 		</html>

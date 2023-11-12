@@ -3,10 +3,12 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AuthProvider } from "contexts/auth";
-import { LegalAgeProvider } from "contexts/legal-age";
+import { CurrentBudgetProvider } from "contexts/current-budget";
 import { PwaProvider } from "contexts/pwa-popup";
 import React from "react";
 import { ToastContainer } from "react-toastify";
+
+import { AddTransactionProvider } from "./add-transaction";
 
 function Providers({ children }: React.PropsWithChildren) {
 	const [client] = React.useState(
@@ -25,9 +27,11 @@ function Providers({ children }: React.PropsWithChildren) {
 	return (
 		<AuthProvider>
 			<QueryClientProvider client={client}>
-				<LegalAgeProvider>
-					<PwaProvider>{children}</PwaProvider>
-				</LegalAgeProvider>
+				<AddTransactionProvider>
+					<CurrentBudgetProvider>
+						<PwaProvider>{children}</PwaProvider>
+					</CurrentBudgetProvider>
+				</AddTransactionProvider>
 				<ReactQueryDevtools initialIsOpen={false} />
 				<ToastContainer />
 			</QueryClientProvider>

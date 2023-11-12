@@ -72,19 +72,48 @@ export const getDay = (date?: Date): string => {
 	return day.toString().padStart(2, "0");
 };
 
-export const getMonthNameAndYear = (): string => {
-	const monthID = getMonthId();
+export const getTime = (date?: Date): string => {
+	const dateToUse = date || new Date();
 
-	return `${months[monthID].name} de ${new Date().getUTCFullYear()}`;
+	const hours = dateToUse.getHours().toString().padStart(2, "0");
+	const minutes = dateToUse.getMinutes().toString().padStart(2, "0");
+
+	return `${hours}:${minutes}`;
+};
+
+export const getMonthAndYear = (date?: Date): string => {
+	const dateToUse = date || new Date();
+
+	return `${dateToUse.getUTCFullYear()}-${getMonthId(dateToUse)}`;
+};
+
+export const getMonthNameAndYear = (date?: Date): string => {
+	const dateToUse = date || new Date();
+
+	const monthID = getMonthId(dateToUse);
+
+	return `${months[monthID]?.name} de ${dateToUse.getUTCFullYear()}`;
+};
+
+export const formatFullDate = (date?: Date): string => {
+	const dateToUse = date || new Date();
+
+	const monthID = getMonthId(dateToUse);
+	const day = getDay(dateToUse);
+	const time = getTime(dateToUse);
+
+	return `${day} de ${months[
+		monthID
+	]?.name?.toLowerCase()} de ${dateToUse.getUTCFullYear()}, as ${time}`;
 };
 
 export const getMonthShortName = (monthId: MonthID) => {
 	return months[monthId].shortName;
 };
 
-export const sortDateDDMM = (dateA: string, dateB: string) => {
-	const [dayA, monthA, yearA] = dateA.split("-").map(parseFloat);
-	const [dayB, monthB, yearB] = dateB.split("-").map(parseFloat);
+export const sortDateYYYYMMDD = (dateA: string, dateB: string) => {
+	const [yearA, monthA, dayA] = dateA.split("-").map(parseFloat);
+	const [yearB, monthB, dayB] = dateB.split("-").map(parseFloat);
 
 	return new Date(yearA, monthA - 1, dayA).getTime() <
 		new Date(yearB, monthB - 1, dayB).getTime()

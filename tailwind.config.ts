@@ -24,7 +24,7 @@ module.exports = {
 					"primary-content": "#333333",
 					secondary: "#5838F5",
 					"secondary-content": "#ffffff",
-					accent: "#f9daf4",
+					accent: "#ffffff",
 					neutral: "#3855F5",
 					"neutral-content": "#ffffff",
 					"base-100": "#ffffff",
@@ -44,8 +44,19 @@ module.exports = {
 					".bg-content-t": {
 						backgroundColor: "#33333380",
 					},
+					".bg-shadow": {
+						backgroundColor: "#00000080",
+					},
 					".text-content-t": {
 						color: "#33333380",
+					},
+					".date-picker": {
+						"> .react-datetime-picker__wrapper": {
+							border: "none !important",
+						},
+						".react-datetime-picker__clear-button": {
+							display: "none",
+						},
 					},
 				},
 			},

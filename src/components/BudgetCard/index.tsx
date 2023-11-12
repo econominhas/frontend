@@ -1,5 +1,6 @@
 "use client";
 
+import { colors } from "assets/colors";
 import { Cell, Pie, PieChart } from "recharts";
 import { MonthBudget } from "types/budget";
 import { formatMoney } from "utils/money";
@@ -21,14 +22,14 @@ const percentage = (total: number, partial: number) => {
 
 const color = (expensesPercentage: number) => {
 	if (expensesPercentage === 100) {
-		return "red";
+		return colors.red;
 	}
 
 	if (expensesPercentage >= 80) {
-		return "yellow";
+		return colors.yellow;
 	}
 
-	return "green";
+	return colors.green;
 };
 
 export const BudgetCard = ({ budget, expenses }: Props) => {
@@ -123,8 +124,7 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 						<div
 							className="w-2/5 flex flex-row items-center justify-end p-2 rounded-r"
 							style={{
-								backgroundColor:
-									remainingBudget < 0 ? "#ff000080" : "#00800080",
+								backgroundColor: `${color(expensesPercentage)}80`,
 							}}
 						>
 							<span>{formatMoney(remainingBudget)}</span>

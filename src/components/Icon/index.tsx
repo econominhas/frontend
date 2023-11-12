@@ -9,6 +9,7 @@ import {
 	FaUmbrellaBeach,
 	FaWifi,
 } from "react-icons/fa";
+import { MdCompareArrows, MdDownload, MdUpload } from "react-icons/md";
 import { PiBabyFill } from "react-icons/pi";
 
 interface Props {
@@ -44,6 +45,12 @@ export const Icon = ({ icon, color, size, style, ...propsToPass }: Props) => {
 			return <FaUmbrellaBeach {...props} />;
 		case "question":
 			return <FaQuestionCircle {...props} />;
+		case "upload":
+			return <MdUpload {...props} />;
+		case "download":
+			return <MdDownload {...props} />;
+		case "transfer":
+			return <MdCompareArrows {...props} />;
 
 		default:
 			return <></>;

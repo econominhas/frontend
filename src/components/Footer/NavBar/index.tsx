@@ -1,11 +1,16 @@
+"use client";
+
+import { useAddTransaction } from "contexts/add-transaction";
 import Link from "next/link";
 import { BsFillGearFill, BsFillHouseFill } from "react-icons/bs";
 import { FaFileInvoiceDollar, FaPlus } from "react-icons/fa";
 import { PiWalletFill } from "react-icons/pi";
 
 export const NavBar = () => {
+	const { setActive } = useAddTransaction();
+
 	return (
-		<div className="navbar bg-primary sticky bottom-0 z-50 flex justify-around text-3xl">
+		<div className="navbar bg-primary flex justify-around text-3xl">
 			<Link
 				className="tooltip flex flex-col justify-center"
 				data-tip="Orçamento"
@@ -31,6 +36,7 @@ export const NavBar = () => {
 					marginTop: "-2rem",
 					fontSize: "2rem",
 				}}
+				onClick={() => setActive(true)}
 			>
 				<FaPlus />
 			</button>

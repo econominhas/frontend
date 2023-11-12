@@ -1,6 +1,7 @@
 "use client";
 
 import { Icon } from "components/Icon";
+import Link from "next/link";
 import { Category } from "types/category";
 import { TransactionTypeEnum } from "types/enums/transaction-type";
 import { TransactionInOut as TransactionInOutType } from "types/transaction";
@@ -13,7 +14,10 @@ interface Props {
 
 export const TransactionInOut = ({ transaction, category }: Props) => {
 	return (
-		<div className="flex flex-row gap-2 justify-between">
+		<Link
+			className="flex flex-row gap-2 justify-between"
+			href={`/transacao/${transaction.transactionId}`}
+		>
 			<div className="flex flex-row gap-2">
 				<div
 					className="rounded-full w-12 h-12 flex justify-center items-center"
@@ -50,6 +54,6 @@ export const TransactionInOut = ({ transaction, category }: Props) => {
 						: formatMoney(transaction.value * -1)}
 				</span>
 			</div>
-		</div>
+		</Link>
 	);
 };
