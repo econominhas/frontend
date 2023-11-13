@@ -1,6 +1,6 @@
-import { BankAccount } from "types/bank";
+import { Bank, BankAccount } from "types/bank";
 import { Budget } from "types/budget";
-import { Card } from "types/card";
+import { Card, CardProvider } from "types/card";
 import { Category } from "types/category";
 import { CardTypeEnum } from "types/enums/card-type";
 import { NetworkEnum } from "types/enums/network";
@@ -171,14 +171,32 @@ export const budget: Budget = {
 	},
 };
 
+export const bankProviders: Record<string, Bank> = {
+	bradesco: {
+		bankId: "bradesco",
+		name: "Bradesco",
+		code: "123",
+		iconUrl:
+			"https://logospng.org/download/bradesco/logo-bradesco-escudo-1024.png",
+		color: "#F0152D",
+	},
+	nubank: {
+		bankId: "nubank",
+		name: "Nubank",
+		code: "321",
+		iconUrl:
+			"https://seucreditodigital.com.br/wp-content/uploads/2021/05/nova-logomarca-do-Nubank-721x720.jpg",
+		color: "#820BD1",
+	},
+};
+
 export const bankAccounts: Record<string, BankAccount> = {
 	nubank: {
 		bankAccountId: "nubank",
 		accountId: "foo1",
-		bankId: "nubank",
-		iconUrl:
-			"https://seucreditodigital.com.br/wp-content/uploads/2021/05/nova-logomarca-do-Nubank-721x720.jpg",
-		color: "#820BD1",
+		bankId: bankProviders.nubank.bankId,
+		iconUrl: bankProviders.nubank.iconUrl,
+		color: bankProviders.nubank.color,
 		includeOnBalance: true,
 		isSystemManaged: false,
 		accountNumber: "337420",
@@ -189,16 +207,38 @@ export const bankAccounts: Record<string, BankAccount> = {
 	bradesco: {
 		bankAccountId: "bradesco",
 		accountId: "foo1",
-		bankId: "bradesco",
-		iconUrl:
-			"https://logospng.org/download/bradesco/logo-bradesco-escudo-1024.png",
-		color: "#F0152D",
+		bankId: bankProviders.bradesco.bankId,
+		iconUrl: bankProviders.bradesco.iconUrl,
+		color: bankProviders.bradesco.color,
 		includeOnBalance: true,
 		isSystemManaged: false,
 		accountNumber: "123456",
 		branch: "1234",
 		balance: 1000000,
 		name: "Bradesco",
+	},
+};
+
+export const cardProviders: Record<string, CardProvider> = {
+	xpInfinityOne: {
+		cardProviderId: "xpInfinityOne",
+		name: "Xp Infinity One",
+		iconUrl:
+			"https://logodownload.org/wp-content/uploads/2019/07/xp-investimentos-logo-8.png",
+		color: "#1B1A1D",
+		type: CardTypeEnum.CREDIT,
+		network: NetworkEnum.VISA,
+		statementDays: 14,
+		availableDueDates: ["05", "10", "15"],
+	},
+	aleloRefeicao: {
+		cardProviderId: "aleloRefeicao",
+		name: "Alelo Refeicao",
+		iconUrl:
+			"https://logodownload.org/wp-content/uploads/2017/09/alelo-logo-1-599x393.png",
+		color: "#017958",
+		type: CardTypeEnum.VA,
+		network: NetworkEnum.ELO,
 	},
 };
 

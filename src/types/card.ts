@@ -4,7 +4,6 @@ import { PayAtEnum } from "./enums/pay-at";
 
 export interface CardProvider {
 	cardProviderId: string;
-	bankId: string;
 	name: string;
 	iconUrl: string;
 	color: string;
@@ -12,6 +11,7 @@ export interface CardProvider {
 	network: NetworkEnum;
 
 	statementDays?: number;
+	availableDueDates?: Array<string>;
 }
 
 export interface Card {
@@ -32,7 +32,7 @@ export interface Card {
 	payAt?: PayAtEnum;
 	payWithBankAccountId?: string;
 
-	// Debit
+	// Debit cards
 	bankAccountId?: string;
 
 	// VA, VR, VT

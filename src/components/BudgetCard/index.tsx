@@ -46,6 +46,7 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 			<div className="flex flex-col items-center">
 				<PieChart width={250} height={250}>
 					<Pie
+						isAnimationActive={false}
 						data={[
 							{
 								name: "expenses",

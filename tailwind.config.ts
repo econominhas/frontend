@@ -29,26 +29,27 @@ module.exports = {
 					"neutral-content": "#ffffff",
 					"base-100": "#ffffff",
 					"base-content": "#333333",
-					".btn-discord": {
-						"background-color": "#5865F2",
-					},
-					".btn-discord:hover": {
-						"background-color": "#3442d9",
-					},
-					".bg-gray": {
-						backgroundColor: "#DCDCDC",
-					},
 					".bg-content": {
 						backgroundColor: "#333333",
 					},
 					".bg-content-t": {
 						backgroundColor: "#33333380",
 					},
-					".bg-shadow": {
-						backgroundColor: "#00000080",
-					},
 					".text-content-t": {
 						color: "#33333380",
+					},
+					".btn-google": {
+						"background-color": "#ffffff",
+						border: "1px solid #747775",
+					},
+					".btn-google:hover": {
+						"background-color": "#30303008",
+					},
+					".bg-gray": {
+						backgroundColor: "#DCDCDC",
+					},
+					".bg-shadow": {
+						backgroundColor: "#00000080",
 					},
 					".date-picker": {
 						"> .react-datetime-picker__wrapper": {

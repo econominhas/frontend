@@ -6,8 +6,9 @@ import { colors } from "assets/colors";
 import { bankAccounts, cards, categories as categoriesData } from "assets/data";
 import { DateInput } from "components/Inputs/Date";
 import { MoneyInput } from "components/Inputs/Money";
-import { Select } from "components/Inputs/Select";
+import { SelectInput } from "components/Inputs/Select";
 import { TextInput } from "components/Inputs/Text";
+import { TextareaInput } from "components/Inputs/Textarea";
 import { Space } from "components/Space";
 import { useAddTransaction } from "contexts/add-transaction";
 import { TransactionTypeEnum } from "types/enums/transaction-type";
@@ -44,10 +45,10 @@ export const AddTransaction = () => {
 				onClick={() => close()}
 			/>
 			<form className="absolute bottom-0 max-h-[90dvh] z-50 w-full bg-base-100 rounded-t-lg container-padding overflow-auto">
-				<Select
+				<SelectInput
 					label="Tipo de transação"
 					toBeSelectedLabel="Selecione o tipo de transação"
-					selectedId={data.type}
+					value={data.type}
 					fieldNames={{
 						id: "value",
 						color: "color",
@@ -83,10 +84,10 @@ export const AddTransaction = () => {
 					data.type as any,
 				) && (
 					<>
-						<Select
+						<SelectInput
 							label="Categoria"
 							toBeSelectedLabel="Selecione a categoria"
-							selectedId={data.categoryId}
+							value={data.categoryId}
 							data={categories}
 							fieldNames={{
 								id: "categoryId",
@@ -107,10 +108,10 @@ export const AddTransaction = () => {
 
 						<Space />
 
-						<Select
+						<SelectInput
 							label="Método de pagamento"
 							toBeSelectedLabel="Selecione o método de pagamento"
-							selectedId={data.paymentMethodId}
+							value={data.paymentMethodId}
 							data={Object.values(cards)}
 							fieldNames={{
 								id: "cardId",
@@ -149,10 +150,10 @@ export const AddTransaction = () => {
 
 						<Space />
 
-						<Select
+						<SelectInput
 							label="Conta de origem"
 							toBeSelectedLabel="Selecione a conta de origem"
-							selectedId={data.bankAccountFromId}
+							value={data.bankAccountFromId}
 							data={Object.values(bankAccounts)}
 							fieldNames={{
 								id: "bankAccountId",
@@ -165,10 +166,10 @@ export const AddTransaction = () => {
 
 						<Space />
 
-						<Select
+						<SelectInput
 							label="Conta de destino"
 							toBeSelectedLabel="Selecione a conta de destino"
-							selectedId={data.bankAccountToId}
+							value={data.bankAccountToId}
 							data={Object.values(bankAccounts)}
 							fieldNames={{
 								id: "bankAccountId",
@@ -200,10 +201,9 @@ export const AddTransaction = () => {
 
 					<Space />
 
-					<TextInput
+					<TextareaInput
 						label="Descrição"
 						placeholder="Máximo de 300 caracteres"
-						textarea
 						value={data.description}
 						onChange={(val) => setData("description", val)}
 					/>
@@ -220,7 +220,7 @@ export const AddTransaction = () => {
 				<div className="flex flex-col justify-center w-full">
 					<button
 						type="submit"
-						className="mt-4 underline btn btn-primary"
+						className="mt-4 btn btn-primary"
 						disabled={!readyToCreate}
 					>
 						Cadastrar transação
@@ -228,7 +228,7 @@ export const AddTransaction = () => {
 
 					<button
 						type="button"
-						className="mt-4 underline btn btn-error"
+						className="mt-4 btn btn-error"
 						onClick={() => close()}
 					>
 						Cancelar

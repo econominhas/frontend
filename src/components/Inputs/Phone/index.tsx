@@ -1,48 +1,36 @@
 import React from "react";
-import { formatBankAccount } from "utils/format";
+import { CountryEnum } from "types/enums/country";
+import { formatPhone } from "utils/format";
 
 import { makeBeforeChangeValue } from "../helpers";
 
 interface Props {
 	id?: string;
+	country: CountryEnum;
 	label: string;
-	numeric?: boolean;
 	placeholder?: string;
-	mask?: "99999-9";
-	maxLength?: number;
 	value: string;
 	onChange: (val: string) => void;
 }
 
-export function TextInput({
+const maxlengthByCountry = {
+	[CountryEnum.BR]: 11,
+};
+
+export function PhoneInput({
 	id,
 	label,
 	placeholder,
 	value,
-	mask,
-
-	numeric,
-	maxLength,
+	country,
 
 	onChange,
 }: Props) {
 	const beforeChangeValue = makeBeforeChangeValue({
-		numeric,
-		maxLength,
+		numeric: true,
+		maxLength: maxlengthByCountry[country],
 		onChange,
 	});
-
-	const formatValue = (val: string): string => {
-		if (!mask) return val;
-
-		switch (mask) {
-			case "99999-9":
-				return formatBankAccount(val);
-
-			default:
-				return val;
-		}
-	};
 
 	return (
 		<div className="form-control">
@@ -51,16 +39,11 @@ export function TextInput({
 			</label>
 			<input
 				id={id}
-				type="text"
-				{...(numeric
-					? {
-							inputMode: "numeric",
-							autoComplete: "off",
-					  }
-					: {})}
+				type="tel"
+				inputMode="numeric"
 				placeholder={placeholder || label}
 				className="input input-bordered mt-2"
-				value={formatValue(value)}
+				value={formatPhone(value, country)}
 				onChange={(e) => beforeChangeValue(e.target.value)}
 			/>
 		</div>

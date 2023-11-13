@@ -7,6 +7,7 @@ import {
 import { Header } from "components/Header";
 import { Space } from "components/Space";
 import { WalletItem } from "components/WalletItem";
+import Link from "next/link";
 import { PiPlusCircleBold } from "react-icons/pi";
 import { CardTypeEnum } from "types/enums/card-type";
 import { formatBankAccount } from "utils/format";
@@ -16,6 +17,10 @@ const bankAccounts = Object.values(bankAccountsData);
 const cards = Object.values(cardsData);
 
 const Wallet = () => {
+	const hasVA = cards.find((c) => c.type === CardTypeEnum.VA);
+	const hasVR = cards.find((c) => c.type === CardTypeEnum.VR);
+	const hasVT = cards.find((c) => c.type === CardTypeEnum.VT);
+
 	return (
 		<>
 			<Header title="Carteira" />
@@ -34,61 +39,69 @@ const Wallet = () => {
 								)}
 							</span>
 						</div>
-						<div className="pl-3 text-sm">
-							<div className="flex flex-row justify-between">
-								<span>Bancos</span>
-								<span>
-									{formatMoney(
-										bankAccounts.reduce((acc, cur) => acc + cur.balance, 0),
-									)}
-								</span>
+						{(hasVA || hasVA || hasVT) && (
+							<div className="pl-3 text-sm">
+								<div className="flex flex-row justify-between">
+									<span>Bancos</span>
+									<span>
+										{formatMoney(
+											bankAccounts.reduce((acc, cur) => acc + cur.balance, 0),
+										)}
+									</span>
+								</div>
+
+								{hasVA && (
+									<div className="flex flex-row justify-between">
+										<span>Vale Alimentação</span>
+										<span>
+											{formatMoney(
+												cards.reduce((acc, cur) => {
+													if (cur.type === CardTypeEnum.VA) {
+														return acc + (cur.balance || 0);
+													}
+
+													return acc;
+												}, 0),
+											)}
+										</span>
+									</div>
+								)}
+
+								{hasVR && (
+									<div className="flex flex-row justify-between">
+										<span>Vale Refeição</span>
+										<span>
+											{formatMoney(
+												cards.reduce((acc, cur) => {
+													if (cur.type === CardTypeEnum.VR) {
+														return acc + (cur.balance || 0);
+													}
+
+													return acc;
+												}, 0),
+											)}
+										</span>
+									</div>
+								)}
+
+								{hasVT && (
+									<div className="flex flex-row justify-between">
+										<span>Vale Transporte</span>
+										<span>
+											{formatMoney(
+												cards.reduce((acc, cur) => {
+													if (cur.type === CardTypeEnum.VT) {
+														return acc + (cur.balance || 0);
+													}
+
+													return acc;
+												}, 0),
+											)}
+										</span>
+									</div>
+								)}
 							</div>
-
-							<div className="flex flex-row justify-between">
-								<span>Vale Alimentação</span>
-								<span>
-									{formatMoney(
-										cards.reduce((acc, cur) => {
-											if (cur.type === CardTypeEnum.VA) {
-												return acc + (cur.balance || 0);
-											}
-
-											return acc;
-										}, 0),
-									)}
-								</span>
-							</div>
-
-							<div className="flex flex-row justify-between">
-								<span>Vale Refeição</span>
-								<span>
-									{formatMoney(
-										cards.reduce((acc, cur) => {
-											if (cur.type === CardTypeEnum.VR) {
-												return acc + (cur.balance || 0);
-											}
-
-											return acc;
-										}, 0),
-									)}
-								</span>
-							</div>
-
-							<div className="flex flex-row justify-between">
-								<span>Vale Transporte</span>
-								<span>
-									{formatMoney(
-										cards.reduce((acc, cur) => {
-											if (cur.type === CardTypeEnum.VT) {
-												return acc + (cur.balance || 0);
-											}
-
-											return acc;
-										}, 0),
-									)}
-								</span>
-							</div>
-						</div>
+						)}
 
 						<div className="flex flex-row justify-between">
 							<span>Fatura total</span>
@@ -124,9 +137,9 @@ const Wallet = () => {
 							/>
 						))}
 
-						<button className="btn">
+						<Link href="/adicionar-conta" className="btn">
 							<PiPlusCircleBold /> Adicionar nova conta
-						</button>
+						</Link>
 					</div>
 				</section>
 
@@ -138,7 +151,7 @@ const Wallet = () => {
 					<div className="flex flex-col gap-1">
 						{cards.map((c) => (
 							<WalletItem
-								key={c.bankAccountId}
+								key={c.cardId}
 								iconUrl={c.iconUrl}
 								label={`**** ${c.lastFourDigits}`}
 								name={c.name}
@@ -147,9 +160,9 @@ const Wallet = () => {
 							/>
 						))}
 
-						<button className="btn">
+						<Link href="/adicionar-cartao" className="btn">
 							<PiPlusCircleBold /> Adicionar novo cartão
-						</button>
+						</Link>
 					</div>
 				</section>
 			</main>

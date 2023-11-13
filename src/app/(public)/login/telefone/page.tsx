@@ -1,18 +1,18 @@
 "use client";
 
-import { EmailInput } from "components/Inputs/Email";
+import { TextInput } from "components/Inputs/Text";
 import { useRouter } from "next/navigation";
 import { useForm, useFormState } from "react-hook-form";
 
 interface IForm {
-	email: string;
+	phone: string;
 }
 
-const Email = () => {
+const Phone = () => {
 	const { handleSubmit, register, control } = useForm<IForm>({
 		mode: "onChange",
 		defaultValues: {
-			email: "",
+			phone: "",
 		},
 	});
 
@@ -22,7 +22,7 @@ const Email = () => {
 
 	const onSubmit = (values: IForm) => {
 		if (isValid) {
-			router.push(`/login/e-mail/success?e-mail=${values.email}`);
+			router.push(`/login/telefone/success?telefone=${values.phone}`);
 
 			return;
 		}
@@ -39,9 +39,9 @@ const Email = () => {
 				className="flex items-center justify-center flex-col gap-6"
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<EmailInput
-					id="email"
-					label="E-mail"
+				<TextInput
+					label="Telefone"
+					mask="(99) 99999?-9999"
 					value=""
 					onChange={(val: string) => {}}
 				/>
@@ -58,4 +58,4 @@ const Email = () => {
 	);
 };
 
-export default Email;
+export default Phone;

@@ -1,5 +1,6 @@
 "use client";
 
+import { makeSetData } from "components/Inputs/helpers";
 import { ReactNode, createContext, useContext, useState } from "react";
 import { TransactionTypeEnum } from "types/enums/transaction-type";
 import { getMonthAndYear } from "utils/date";
@@ -57,20 +58,14 @@ export const AddTransactionProvider: FC<Props> = ({ children }) => {
 
 	const [data, setDataRaw] = useState<FormData>(genDefaultData());
 
-	const setData = <T extends keyof FormData>(field: T, value: FormData[T]) => {
-		setDataRaw((prevState) => {
-			const newVal = {
-				...prevState,
-				[field]: value,
-			};
-
+	const setData = makeSetData<FormData>({
+		setState: setDataRaw,
+		execBeforeSet: (newVal) => {
 			if (newVal.categoryId && newVal.value > 0 && newVal.paymentMethodId) {
 				setReadyToCreate(true);
 			}
-
-			return newVal;
-		});
-	};
+		},
+	});
 
 	const setActive = (active: boolean) => {
 		if (!active) {

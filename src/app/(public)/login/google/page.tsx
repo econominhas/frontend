@@ -8,7 +8,7 @@ import Loading from "./loading";
 
 const API_URL = process.env["NEXT_PUBLIC_API_URL"];
 
-const Discord = () => {
+const Google = () => {
 	const [token, setToken] = useState("");
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -17,7 +17,7 @@ const Discord = () => {
 	useEffect(() => {
 		const tokenFetch = async () => {
 			try {
-				const response = await fetch(`${API_URL}/auth/discord`, {
+				const response = await fetch(`${API_URL}/auth/google`, {
 					method: "POST",
 					body: JSON.stringify({
 						code,
@@ -45,4 +45,4 @@ const Discord = () => {
 	router.push("/");
 };
 
-export default Discord;
+export default Google;

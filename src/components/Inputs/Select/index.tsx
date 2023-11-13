@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Listbox, Transition } from "@headlessui/react";
+import { colors } from "assets/colors";
 import { Icon } from "components/Icon";
 import React from "react";
 import { Fragment } from "react";
@@ -12,26 +13,26 @@ interface Props<T> {
 	label: string;
 	toBeSelectedLabel?: string;
 	data: Array<T>;
-	selectedId?: string;
+	value?: string;
 	fieldNames: {
 		id: keyof T;
 		label: keyof T;
-		color: keyof T;
+		color?: keyof T;
 		icon?: keyof T;
 		iconUrl?: keyof T;
 	};
 	onChange: (val: any) => void;
 }
 
-export function Select<T extends Record<string, any>>({
+export function SelectInput<T extends Record<string, any>>({
 	label,
 	toBeSelectedLabel,
 	data,
-	selectedId,
+	value,
 	fieldNames,
 	onChange,
 }: Props<T>) {
-	const selected = data.find((d) => d[fieldNames.id] === selectedId);
+	const selected = data.find((d) => d[fieldNames.id] === value);
 
 	return (
 		<Listbox value={selected} onChange={onChange}>
@@ -63,8 +64,14 @@ export function Select<T extends Record<string, any>>({
 								style={
 									selected
 										? {
-												backgroundColor: selected[fieldNames.color],
-												color: getTextColor(selected[fieldNames.color]),
+												backgroundColor: fieldNames.color
+													? selected[fieldNames.color]
+													: colors.primary,
+												color: getTextColor(
+													fieldNames.color
+														? selected[fieldNames.color]
+														: colors.primary,
+												),
 										  }
 										: {}
 								}
@@ -137,14 +144,26 @@ export function Select<T extends Record<string, any>>({
 										<div
 											className="flex items-center rounded px-4 py-2"
 											style={
-												d[fieldNames.id] === selectedId
+												d[fieldNames.id] === value
 													? {
-															backgroundColor: d[fieldNames.color],
-															color: getTextColor(d[fieldNames.color]),
+															backgroundColor: fieldNames.color
+																? d[fieldNames.color]
+																: colors.primary,
+															color: getTextColor(
+																fieldNames.color
+																	? d[fieldNames.color]
+																	: colors.primary,
+															),
 													  }
 													: {
-															border: `1px solid ${d[fieldNames.color]}`,
-															color: d[fieldNames.color],
+															border: `1px solid ${
+																fieldNames.color
+																	? d[fieldNames.color]
+																	: colors.primary
+															}`,
+															color: fieldNames.color
+																? d[fieldNames.color]
+																: colors.primary,
 													  }
 											}
 										>

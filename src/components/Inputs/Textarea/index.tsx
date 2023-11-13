@@ -1,18 +1,28 @@
 import React from "react";
-import { formatMoney } from "utils/format";
 
 import { makeBeforeChangeValue } from "../helpers";
 
 interface Props {
+	id?: string;
 	label: string;
-	value?: number;
-	onChange: (val: number) => void;
+	placeholder?: string;
+	maxLength?: number;
+	value: string;
+	onChange: (val: string) => void;
 }
 
-export function MoneyInput({ label, value, onChange }: Props) {
+export function TextareaInput({
+	id,
+	label,
+	placeholder,
+	value,
+
+	maxLength,
+
+	onChange,
+}: Props) {
 	const beforeChangeValue = makeBeforeChangeValue({
-		numeric: true,
-		setValueAsNumber: true,
+		maxLength,
 		onChange,
 	});
 
@@ -21,13 +31,12 @@ export function MoneyInput({ label, value, onChange }: Props) {
 			<label className="label p-0">
 				<span className="label-text">{label}</span>
 			</label>
-			<input
-				type="text"
-				inputMode="numeric"
-				autoComplete="off"
-				placeholder={label}
-				className="input input-bordered mt-2"
-				value={formatMoney(value)}
+			<textarea
+				id={id}
+				placeholder={placeholder || label}
+				maxLength={300}
+				className="input input-bordered mt-2 h-24 py-3 resize-none"
+				value={value}
 				onChange={(e) => beforeChangeValue(e.target.value)}
 			/>
 		</div>
