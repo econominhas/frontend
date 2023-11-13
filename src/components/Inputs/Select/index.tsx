@@ -1,7 +1,6 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { colors } from "assets/colors";
 import { Icon } from "components/Icon";
-import Image from "next/image";
 import React from "react";
 import { Fragment } from "react";
 import { BsFillCaretDownFill } from "react-icons/bs";
@@ -88,7 +87,7 @@ export function SelectInput<T extends Record<string, any>>({
 											<Icon icon={selected[fieldNames.icon]} size={2} />
 										)}
 										{fieldNames.iconUrl && (
-											<Image
+											<img
 												src={selected[fieldNames.iconUrl]}
 												alt={selected[fieldNames.label]}
 												className="w-4 h-4"
@@ -169,7 +168,7 @@ export function SelectInput<T extends Record<string, any>>({
 												<Icon icon={d[fieldNames?.icon]} size={2} />
 											)}
 											{fieldNames.iconUrl && d[fieldNames.iconUrl] && (
-												<Image
+												<img
 													src={d[fieldNames?.iconUrl]}
 													alt={d[fieldNames.label]}
 													className="w-4 h-4"

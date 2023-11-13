@@ -9,7 +9,7 @@ const withPWA = require("next-pwa")({
 
 const nextConfig = withPWA({
 	output: "export",
-	basePath: "/frontend",
+	basePath: process.env.IN_DEVELOPMENT ? "" : "/frontend",
 	images: {
 		unoptimized: true,
 	},

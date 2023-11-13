@@ -21,7 +21,7 @@ export const Header = ({
 	const router = useRouter();
 
 	return (
-		<section>
+		<section className="sticky top-0 z-40 shadow">
 			<div className="bg-primary container-padding text-center items-center relative">
 				{hasBackBtn && (
 					<button
