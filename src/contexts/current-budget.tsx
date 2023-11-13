@@ -9,6 +9,8 @@ interface CurrentBudgetContextType {
 	currentBudgetDate: Date;
 	setNextBudget: () => void;
 	setPrevBudget: () => void;
+	setNextYearBudget: () => void;
+	setPrevYearBudget: () => void;
 	getCurrentBudgetMonthId: () => MonthID;
 }
 
@@ -47,6 +49,18 @@ export const CurrentBudgetProvider: FC<Props> = ({ children }) => {
 		}
 	};
 
+	const setPrevYearBudget = (): void => {
+		const [year, month] = currentBudget.split("-");
+
+		setCurrentBudget(`${parseInt(year) - 1}-${month}`);
+	};
+
+	const setNextYearBudget = (): void => {
+		const [year, month] = currentBudget.split("-");
+
+		setCurrentBudget(`${parseInt(year) + 1}-${month}`);
+	};
+
 	const getCurrentBudgetMonthId = (): MonthID => {
 		return currentBudget.split("-").pop()! as MonthID;
 	};
@@ -58,6 +72,8 @@ export const CurrentBudgetProvider: FC<Props> = ({ children }) => {
 				currentBudgetDate: new Date(`${currentBudget}-01`),
 				setNextBudget,
 				setPrevBudget,
+				setNextYearBudget,
+				setPrevYearBudget,
 				getCurrentBudgetMonthId,
 			}}
 		>

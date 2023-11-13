@@ -26,6 +26,20 @@ export const Icon = ({ icon, color, size, style, ...propsToPass }: Props) => {
 		...propsToPass,
 	};
 
+	// We have to set it manually due a bug
+	if (size === 6) {
+		props.style.width = "1.5rem";
+		props.style.height = "1.5rem";
+	}
+	if (size === 8) {
+		props.style.width = "2rem";
+		props.style.height = "2rem";
+	}
+	if (size === 10) {
+		props.style.width = "2.5rem";
+		props.style.height = "2.5rem";
+	}
+
 	switch (icon) {
 		case "house":
 			return <BsFillHouseFill {...props} />;

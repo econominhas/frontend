@@ -134,7 +134,7 @@ const Wallet = () => {
 							href={`/adicionar-cartao?type=${CardTypeEnum.PREPAID}`}
 							className="btn"
 						>
-							<PiPlusCircleBold /> Adicionar novo cartão
+							<PiPlusCircleBold /> Adicionar novo vale
 						</Link>
 					</div>
 				</section>

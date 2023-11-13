@@ -154,7 +154,7 @@ export const expenses: Record<string, number> = {
 export const budget: Budget = {
 	budgetId: "foo",
 	accountId: "foo",
-	name: "Default - 2023",
+	name: "Padrão - 2023",
 	year: 2023,
 	budgets: {
 		"11": {

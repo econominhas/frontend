@@ -3,13 +3,14 @@
 import { useRouter } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
 
-import { MonthIndicator } from "./MonthIndicator";
+import { BudgetIndicator } from "./BudgetIndicator";
 
 export interface HeaderProps {
 	title: string;
 	subtitle?: string;
 	hasBackBtn?: boolean;
 	hasMonthIndicator?: boolean;
+	hasYearlyIndicator?: boolean;
 }
 
 export const Header = ({
@@ -17,6 +18,7 @@ export const Header = ({
 	subtitle,
 	hasBackBtn,
 	hasMonthIndicator,
+	hasYearlyIndicator,
 }: HeaderProps) => {
 	const router = useRouter();
 
@@ -37,7 +39,9 @@ export const Header = ({
 				</div>
 			</div>
 
-			{hasMonthIndicator && <MonthIndicator />}
+			{(hasMonthIndicator || hasYearlyIndicator) && (
+				<BudgetIndicator yearly={hasYearlyIndicator} />
+			)}
 		</section>
 	);
 };
