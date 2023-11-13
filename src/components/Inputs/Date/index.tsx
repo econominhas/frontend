@@ -3,10 +3,6 @@ import locale from "antd/es/date-picker/locale/pt_BR";
 import dayjs from "dayjs";
 import React from "react";
 
-import "react-datetime-picker/dist/DateTimePicker.css";
-import "react-calendar/dist/Calendar.css";
-import "react-clock/dist/Clock.css";
-
 interface Props {
 	label: string;
 	mode: "time" | "month";

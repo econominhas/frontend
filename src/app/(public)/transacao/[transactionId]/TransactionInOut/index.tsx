@@ -14,15 +14,11 @@ interface Props {
 
 const getCardType = (type: CardTypeEnum) => {
 	switch (type) {
-		case CardTypeEnum.CREDIT:
+		case CardTypeEnum.POSTPAID:
 		default:
-			return "Crédito";
-		case CardTypeEnum.DEBIT:
-			return "Débito";
-		case CardTypeEnum.VA:
-			return "Vale Alimentacao";
-		case CardTypeEnum.VR:
-			return "Vale Refeicao";
+			return "Pós-pago";
+		case CardTypeEnum.PREPAID:
+			return "Pré-pago";
 	}
 };
 
@@ -37,7 +33,7 @@ const Card = ({ cardId }: { cardId: string }) => {
 				<img
 					src={card.iconUrl}
 					alt={card.name}
-					className="w-12 h-full rounded"
+					className="max-w-12 max-h-12 rounded"
 				/>
 
 				<div className="flex flex-col">

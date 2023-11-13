@@ -14,7 +14,7 @@ export interface CardProvider {
 	availableDueDates?: Array<string>;
 }
 
-export interface Card {
+interface BaseCard {
 	cardId: string;
 	accountId: string;
 	cardProviderId: string;
@@ -24,17 +24,22 @@ export interface Card {
 	network: NetworkEnum;
 	name: string;
 	lastFourDigits: string;
-
-	// Credit cards
-	dueDay?: number;
-	statementDays?: number;
-	limit?: number;
-	payAt?: PayAtEnum;
-	payWithBankAccountId?: string;
-
-	// Debit cards
-	bankAccountId?: string;
-
-	// VA, VR, VT
-	balance?: number;
 }
+
+// Credit cards
+export interface PostpaidCard extends BaseCard {
+	type: CardTypeEnum.POSTPAID;
+	dueDay: number;
+	statementDays: number;
+	limit: number;
+	payAt: PayAtEnum;
+	payWithBankAccountId: string;
+}
+
+// VA, VR, VT
+export interface PrepaidCard extends BaseCard {
+	type: CardTypeEnum.PREPAID;
+	balance: number;
+}
+
+export type Card = PostpaidCard | PrepaidCard;

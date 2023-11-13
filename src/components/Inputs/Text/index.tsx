@@ -1,5 +1,5 @@
 import React from "react";
-import { formatBankAccount } from "utils/format";
+import { formatBankAccountNumber } from "utils/format";
 
 import { makeBeforeChangeValue } from "../helpers";
 
@@ -37,7 +37,7 @@ export function TextInput({
 
 		switch (mask) {
 			case "99999-9":
-				return formatBankAccount(val);
+				return formatBankAccountNumber(val);
 
 			default:
 				return val;

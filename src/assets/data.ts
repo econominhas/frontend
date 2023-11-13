@@ -197,8 +197,6 @@ export const bankAccounts: Record<string, BankAccount> = {
 		bankId: bankProviders.nubank.bankId,
 		iconUrl: bankProviders.nubank.iconUrl,
 		color: bankProviders.nubank.color,
-		includeOnBalance: true,
-		isSystemManaged: false,
 		accountNumber: "337420",
 		branch: "1234",
 		balance: 1000000,
@@ -210,8 +208,6 @@ export const bankAccounts: Record<string, BankAccount> = {
 		bankId: bankProviders.bradesco.bankId,
 		iconUrl: bankProviders.bradesco.iconUrl,
 		color: bankProviders.bradesco.color,
-		includeOnBalance: true,
-		isSystemManaged: false,
 		accountNumber: "123456",
 		branch: "1234",
 		balance: 1000000,
@@ -226,7 +222,7 @@ export const cardProviders: Record<string, CardProvider> = {
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2019/07/xp-investimentos-logo-8.png",
 		color: "#1B1A1D",
-		type: CardTypeEnum.CREDIT,
+		type: CardTypeEnum.POSTPAID,
 		network: NetworkEnum.VISA,
 		statementDays: 14,
 		availableDueDates: ["05", "10", "15"],
@@ -237,7 +233,7 @@ export const cardProviders: Record<string, CardProvider> = {
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2017/09/alelo-logo-1-599x393.png",
 		color: "#017958",
-		type: CardTypeEnum.VA,
+		type: CardTypeEnum.PREPAID,
 		network: NetworkEnum.ELO,
 	},
 };
@@ -250,7 +246,7 @@ export const cards: Record<string, Card> = {
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2019/07/xp-investimentos-logo-8.png",
 		color: "#1B1A1D",
-		type: CardTypeEnum.CREDIT,
+		type: CardTypeEnum.POSTPAID,
 		network: NetworkEnum.VISA,
 		name: "Xp Investimentos",
 
@@ -269,7 +265,7 @@ export const cards: Record<string, Card> = {
 		iconUrl:
 			"https://seucreditodigital.com.br/wp-content/uploads/2021/05/nova-logomarca-do-Nubank-721x720.jpg",
 		color: "#820BD1",
-		type: CardTypeEnum.CREDIT,
+		type: CardTypeEnum.POSTPAID,
 		network: NetworkEnum.MASTERCARD,
 		name: "Nubank",
 
@@ -288,7 +284,7 @@ export const cards: Record<string, Card> = {
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2017/09/alelo-logo-1-599x393.png",
 		color: "#017958",
-		type: CardTypeEnum.VA,
+		type: CardTypeEnum.PREPAID,
 		network: NetworkEnum.ELO,
 		name: "Alelo VA",
 		lastFourDigits: "1234",

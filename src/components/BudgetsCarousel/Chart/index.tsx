@@ -25,6 +25,12 @@ export const Chart = ({ budget, spent, color, icon }: Props) => {
 		<div className="flex flex-col items-center gap-2">
 			<div className="w-12 h-28 relative">
 				<div
+					className="w-full h-full absolute bottom-0 rounded"
+					style={{
+						border: `1px solid ${color}`,
+					}}
+				/>
+				<div
 					className="w-full absolute bottom-0 rounded"
 					style={{
 						height: `${percentage(budget, spent)}%`,

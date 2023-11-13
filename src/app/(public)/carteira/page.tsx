@@ -9,18 +9,15 @@ import { Space } from "components/Space";
 import { WalletItem } from "components/WalletItem";
 import Link from "next/link";
 import { PiPlusCircleBold } from "react-icons/pi";
+import { PostpaidCard, PrepaidCard } from "types/card";
 import { CardTypeEnum } from "types/enums/card-type";
-import { formatBankAccount } from "utils/format";
+import { formatBankAccountNumber } from "utils/format";
 import { formatMoney } from "utils/format";
 
 const bankAccounts = Object.values(bankAccountsData);
 const cards = Object.values(cardsData);
 
 const Wallet = () => {
-	const hasVA = cards.find((c) => c.type === CardTypeEnum.VA);
-	const hasVR = cards.find((c) => c.type === CardTypeEnum.VR);
-	const hasVT = cards.find((c) => c.type === CardTypeEnum.VT);
-
 	return (
 		<>
 			<Header title="Carteira" />
@@ -31,84 +28,20 @@ const Wallet = () => {
 
 					<div>
 						<div className="flex flex-row justify-between">
-							<span>Saldo total</span>
+							<span>Saldo bancário</span>
 							<span>
 								{formatMoney(
-									bankAccounts.reduce((acc, cur) => acc + cur.balance, 0) +
-										cards.reduce((acc, cur) => acc + (cur.balance || 0), 0),
+									bankAccounts.reduce((acc, cur) => acc + cur.balance, 0),
 								)}
 							</span>
 						</div>
-						{(hasVA || hasVA || hasVT) && (
-							<div className="pl-3 text-sm">
-								<div className="flex flex-row justify-between">
-									<span>Bancos</span>
-									<span>
-										{formatMoney(
-											bankAccounts.reduce((acc, cur) => acc + cur.balance, 0),
-										)}
-									</span>
-								</div>
-
-								{hasVA && (
-									<div className="flex flex-row justify-between">
-										<span>Vale Alimentação</span>
-										<span>
-											{formatMoney(
-												cards.reduce((acc, cur) => {
-													if (cur.type === CardTypeEnum.VA) {
-														return acc + (cur.balance || 0);
-													}
-
-													return acc;
-												}, 0),
-											)}
-										</span>
-									</div>
-								)}
-
-								{hasVR && (
-									<div className="flex flex-row justify-between">
-										<span>Vale Refeição</span>
-										<span>
-											{formatMoney(
-												cards.reduce((acc, cur) => {
-													if (cur.type === CardTypeEnum.VR) {
-														return acc + (cur.balance || 0);
-													}
-
-													return acc;
-												}, 0),
-											)}
-										</span>
-									</div>
-								)}
-
-								{hasVT && (
-									<div className="flex flex-row justify-between">
-										<span>Vale Transporte</span>
-										<span>
-											{formatMoney(
-												cards.reduce((acc, cur) => {
-													if (cur.type === CardTypeEnum.VT) {
-														return acc + (cur.balance || 0);
-													}
-
-													return acc;
-												}, 0),
-											)}
-										</span>
-									</div>
-								)}
-							</div>
-						)}
 
 						<div className="flex flex-row justify-between">
-							<span>Fatura total</span>
+							<span>Fatura</span>
 							<span>
 								{formatMoney(
 									cards.reduce((acc, cur) => {
-										if (cur.type === CardTypeEnum.CREDIT) {
+										if (cur.type === CardTypeEnum.POSTPAID) {
 											return acc + 0;
 										}
 
@@ -129,8 +62,9 @@ const Wallet = () => {
 						{bankAccounts.map((ba) => (
 							<WalletItem
 								key={ba.bankAccountId}
+								redirectTo={`/conta-bancaria/${ba.bankAccountId}`}
 								iconUrl={ba.iconUrl}
-								label={formatBankAccount(ba.accountNumber)}
+								label={formatBankAccountNumber(ba.accountNumber)}
 								name={ba.name}
 								valueLabel="Saldo"
 								value={formatMoney(ba.balance)}
@@ -146,21 +80,60 @@ const Wallet = () => {
 				<Space />
 
 				<section>
-					<h2 className="font-bold text-lg">Cartões</h2>
+					<h2 className="font-bold text-lg">Cartões de crédito</h2>
 
 					<div className="flex flex-col gap-1">
-						{cards.map((c) => (
+						{(
+							cards.filter(
+								(c) => c.type === CardTypeEnum.POSTPAID,
+							) as Array<PostpaidCard>
+						).map((c) => (
 							<WalletItem
 								key={c.cardId}
+								redirectTo={`/cartao/${c.cardId}`}
 								iconUrl={c.iconUrl}
 								label={`**** ${c.lastFourDigits}`}
 								name={c.name}
-								valueLabel={c.type === CardTypeEnum.CREDIT ? "Fatura" : "Saldo"}
+								valueLabel="Fatura"
 								value={formatMoney(0)}
 							/>
 						))}
 
-						<Link href="/adicionar-cartao" className="btn">
+						<Link
+							href={`/adicionar-cartao?type=${CardTypeEnum.POSTPAID}`}
+							className="btn"
+						>
+							<PiPlusCircleBold /> Adicionar novo cartão
+						</Link>
+					</div>
+				</section>
+
+				<Space />
+
+				<section>
+					<h2 className="font-bold text-lg">Vales</h2>
+
+					<div className="flex flex-col gap-1">
+						{(
+							cards.filter(
+								(c) => c.type === CardTypeEnum.PREPAID,
+							) as Array<PrepaidCard>
+						).map((c) => (
+							<WalletItem
+								key={c.cardId}
+								redirectTo={`/cartao/${c.cardId}`}
+								iconUrl={c.iconUrl}
+								label={`**** ${c.lastFourDigits}`}
+								name={c.name}
+								valueLabel="Saldo"
+								value={formatMoney(c.balance)}
+							/>
+						))}
+
+						<Link
+							href={`/adicionar-cartao?type=${CardTypeEnum.PREPAID}`}
+							className="btn"
+						>
 							<PiPlusCircleBold /> Adicionar novo cartão
 						</Link>
 					</div>

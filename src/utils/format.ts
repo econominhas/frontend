@@ -30,7 +30,7 @@ const formatter = new Intl.NumberFormat("pt-BR", {
 export const formatMoney = (price?: number) =>
 	formatter.format((price || 0) / 100);
 
-export const formatBankAccount = (bankAccount: string) => {
+export const formatBankAccountNumber = (bankAccount: string) => {
 	if (bankAccount.length <= 5) {
 		return bankAccount;
 	}

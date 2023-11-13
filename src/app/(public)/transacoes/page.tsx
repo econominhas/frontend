@@ -1,9 +1,9 @@
 "use client";
 
 import { budget as budgetData, categories, transactions } from "assets/data";
+import { BudgetsCarousel } from "components/BudgetsCarousel";
 import { Header } from "components/Header";
 import { NoBudget } from "components/NoBudget";
-import { BudgetsCarousel } from "components/StoresCarousel";
 import { TransactionInOut } from "components/TransactionInOut";
 import { useCurrentBudget } from "contexts/current-budget";
 import { MonthID } from "types/budget";

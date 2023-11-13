@@ -10,6 +10,7 @@ interface Props<T> {
 	label: string;
 	toBeSelectedLabel?: string;
 	data: Array<T>;
+	disabled?: boolean;
 	value?: string;
 	fieldNames: {
 		id: keyof T;
@@ -27,12 +28,13 @@ export function SelectInput<T extends Record<string, any>>({
 	data,
 	value,
 	fieldNames,
+	disabled,
 	onChange,
 }: Props<T>) {
 	const selected = data.find((d) => d[fieldNames.id] === value);
 
 	return (
-		<Listbox value={selected} onChange={onChange}>
+		<Listbox disabled={disabled} value={selected} onChange={onChange}>
 			{({ open }) => (
 				<>
 					<Listbox.Label className="block text-sm leading-6">
@@ -54,6 +56,7 @@ export function SelectInput<T extends Record<string, any>>({
 								"focus:outline-none",
 								"focus:ring-2",
 								"focus:ring-primary",
+								disabled ? "bg-disabled" : "",
 							].join(" ")}
 						>
 							<div
@@ -90,7 +93,7 @@ export function SelectInput<T extends Record<string, any>>({
 											<img
 												src={selected[fieldNames.iconUrl]}
 												alt={selected[fieldNames.label]}
-												className="w-4 h-4"
+												className="max-w-4 max-h-4"
 											/>
 										)}
 										<span className="ml-3 block truncate">
@@ -171,7 +174,7 @@ export function SelectInput<T extends Record<string, any>>({
 												<img
 													src={d[fieldNames?.iconUrl]}
 													alt={d[fieldNames.label]}
-													className="w-4 h-4"
+													className="max-w-4 max-h-4"
 												/>
 											)}
 											<span className="ml-3 block truncate font-semibold">

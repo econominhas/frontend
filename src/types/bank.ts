@@ -12,8 +12,6 @@ export interface BankAccount {
 	bankId: string;
 	iconUrl: string;
 	color: string;
-	includeOnBalance: boolean;
-	isSystemManaged: boolean;
 	accountNumber: string;
 	branch: string;
 	balance: number;

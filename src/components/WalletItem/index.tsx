@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 interface Props {
+	redirectTo: string;
 	iconUrl: string;
 	name: string;
 	label: string;
@@ -9,6 +11,7 @@ interface Props {
 }
 
 export const WalletItem = ({
+	redirectTo,
 	iconUrl,
 	name,
 	label,
@@ -16,7 +19,10 @@ export const WalletItem = ({
 	value,
 }: Props) => {
 	return (
-		<div className="relative grid grid-cols-7 gap-1 items-center bg-accent text-accent-content container-padding rounded">
+		<Link
+			href={redirectTo}
+			className="relative grid grid-cols-7 gap-1 items-center bg-accent text-accent-content container-padding rounded"
+		>
 			<img src={iconUrl} alt={label} className="w-12 h-full rounded" />
 
 			<div className="flex flex-col col-span-3">
@@ -32,6 +38,6 @@ export const WalletItem = ({
 			<button className="absolute right-2 top-7 text-2xl flex justify-end">
 				<MdKeyboardArrowRight />
 			</button>
-		</div>
+		</Link>
 	);
 };

@@ -51,13 +51,8 @@ module.exports = {
 					".bg-shadow": {
 						backgroundColor: "#00000080",
 					},
-					".date-picker": {
-						"> .react-datetime-picker__wrapper": {
-							border: "none !important",
-						},
-						".react-datetime-picker__clear-button": {
-							display: "none",
-						},
+					".bg-disabled": {
+						"background-color": "#30303020",
 					},
 				},
 			},

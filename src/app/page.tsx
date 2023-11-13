@@ -38,6 +38,9 @@ const Home = () => {
 						Ver transações
 					</Link>
 				</section>
+
+				<Space />
+				<Space />
 			</main>
 		</>
 	);
