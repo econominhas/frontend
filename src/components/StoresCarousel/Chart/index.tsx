@@ -1,5 +1,5 @@
 import { Icon } from "components/Icon";
-import { formatMoney } from "utils/money";
+import { formatMoney } from "utils/format";
 
 interface Props {
 	budget: number;

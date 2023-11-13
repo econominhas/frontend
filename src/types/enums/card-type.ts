@@ -3,4 +3,5 @@ export enum CardTypeEnum {
 	"DEBIT" = "DEBIT",
 	"VA" = "VA",
 	"VR" = "VR",
+	"VT" = "VT",
 }

@@ -43,7 +43,7 @@ export const AddTransaction = () => {
 				className="absolute top-0 w-full bg-shadow min-h-[100dvh]"
 				onClick={() => close()}
 			/>
-			<form className="absolute bottom-0 max-h-[90dvh] z-50 w-full bg-accent rounded-t-lg container-padding overflow-auto">
+			<form className="absolute bottom-0 max-h-[90dvh] z-50 w-full bg-base-100 rounded-t-lg container-padding overflow-auto">
 				<Select
 					label="Tipo de transação"
 					toBeSelectedLabel="Selecione o tipo de transação"

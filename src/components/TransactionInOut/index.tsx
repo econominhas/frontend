@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Category } from "types/category";
 import { TransactionTypeEnum } from "types/enums/transaction-type";
 import { TransactionInOut as TransactionInOutType } from "types/transaction";
-import { formatMoney } from "utils/money";
+import { formatMoney } from "utils/format";
 
 interface Props {
 	transaction: TransactionInOutType;

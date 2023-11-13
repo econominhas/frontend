@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { formatMoney } from "utils/money";
+import { formatMoney } from "utils/format";
 
 interface Props {
 	label: string;

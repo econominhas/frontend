@@ -4,7 +4,7 @@ import { categories } from "assets/data";
 import { Icon } from "components/Icon";
 import { MonthBudget } from "types/budget";
 import { getTextColor } from "utils/color";
-import { formatMoney } from "utils/money";
+import { formatMoney } from "utils/format";
 
 interface Props {
 	budget: MonthBudget;

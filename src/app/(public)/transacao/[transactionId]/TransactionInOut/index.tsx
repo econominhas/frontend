@@ -6,7 +6,7 @@ import { useCurrentBudget } from "contexts/current-budget";
 import { CardTypeEnum } from "types/enums/card-type";
 import { TransactionInOut as TransactionInOutType } from "types/transaction";
 import { formatFullDate } from "utils/date";
-import { formatMoney } from "utils/money";
+import { formatMoney } from "utils/format";
 
 interface Props {
 	transaction: TransactionInOutType;

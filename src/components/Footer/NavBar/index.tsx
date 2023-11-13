@@ -2,17 +2,21 @@
 
 import { useAddTransaction } from "contexts/add-transaction";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BsFillGearFill, BsFillHouseFill } from "react-icons/bs";
 import { FaFileInvoiceDollar, FaPlus } from "react-icons/fa";
 import { PiWalletFill } from "react-icons/pi";
 
 export const NavBar = () => {
+	const pathname = usePathname();
 	const { setActive } = useAddTransaction();
 
 	return (
 		<div className="navbar bg-primary flex justify-around text-3xl">
 			<Link
-				className="tooltip flex flex-col justify-center"
+				className={`tooltip flex flex-col justify-center ${
+					pathname === "/orcamento" ? "text-white" : ""
+				}`}
 				data-tip="Orçamento"
 				href="/orcamento"
 			>
@@ -21,7 +25,9 @@ export const NavBar = () => {
 			</Link>
 
 			<Link
-				className="tooltip flex flex-col justify-center"
+				className={`tooltip flex flex-col justify-center ${
+					pathname === "/" ? "text-white" : ""
+				}`}
 				data-tip="Home"
 				href="/"
 			>
@@ -42,7 +48,9 @@ export const NavBar = () => {
 			</button>
 
 			<Link
-				className="tooltip flex flex-col justify-center"
+				className={`tooltip flex flex-col justify-center ${
+					pathname === "/carteira" ? "text-white" : ""
+				}`}
 				data-tip="Carteira"
 				href="/carteira"
 			>
@@ -51,7 +59,9 @@ export const NavBar = () => {
 			</Link>
 
 			<Link
-				className="tooltip flex flex-col justify-center"
+				className={`tooltip flex flex-col justify-center ${
+					pathname === "/ajustes" ? "text-white" : ""
+				}`}
 				data-tip="Ajustes"
 				href="/ajustes"
 			>

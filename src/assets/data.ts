@@ -241,4 +241,19 @@ export const cards: Record<string, Card> = {
 		payAt: PayAtEnum.DUE,
 		payWithBankAccountId: bankAccounts["nubank"].bankAccountId,
 	},
+	aleloVa: {
+		cardId: "aleloVa",
+		accountId: "foo1",
+		cardProviderId: "aleloVa",
+		iconUrl:
+			"https://logodownload.org/wp-content/uploads/2017/09/alelo-logo-1-599x393.png",
+		color: "#017958",
+		type: CardTypeEnum.VA,
+		network: NetworkEnum.ELO,
+		name: "Alelo VA",
+		lastFourDigits: "1234",
+
+		// VA, VR, VT
+		balance: 1000,
+	},
 };

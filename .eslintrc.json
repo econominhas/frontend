@@ -29,6 +29,7 @@
 				"groups": ["module", ["parent", "sibling", "index"]],
 				"alphabetize": { "order": "asc", "ignoreCase": true }
 			}
-		]
+		],
+		"@next/next/no-img-element": "off"
 	}
 }

@@ -23,15 +23,18 @@ export interface Card {
 	type: CardTypeEnum;
 	network: NetworkEnum;
 	name: string;
+	lastFourDigits: string;
 
 	// Credit cards
-	lastFourDigits?: string;
 	dueDay?: number;
 	statementDays?: number;
 	limit?: number;
 	payAt?: PayAtEnum;
 	payWithBankAccountId?: string;
 
-	// Debit, VA, VR
+	// Debit
 	bankAccountId?: string;
+
+	// VA, VR, VT
+	balance?: number;
 }

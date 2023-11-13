@@ -3,7 +3,7 @@
 import { colors } from "assets/colors";
 import { Cell, Pie, PieChart } from "recharts";
 import { MonthBudget } from "types/budget";
-import { formatMoney } from "utils/money";
+import { formatMoney } from "utils/format";
 
 interface Props {
 	budget: MonthBudget;
