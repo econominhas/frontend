@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 interface Props {
@@ -17,7 +18,7 @@ export const WalletItem = ({
 }: Props) => {
 	return (
 		<div className="relative grid grid-cols-7 gap-1 items-center bg-accent text-accent-content container-padding rounded">
-			<img src={iconUrl} alt={label} className="w-12 h-full rounded" />
+			<Image src={iconUrl} alt={label} className="w-12 h-full rounded" />
 
 			<div className="flex flex-col col-span-3">
 				<span className="font-semibold">{name}</span>

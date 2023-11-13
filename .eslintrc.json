@@ -30,7 +30,6 @@
 				"alphabetize": { "order": "asc", "ignoreCase": true }
 			}
 		],
-		"@next/next/no-img-element": "off",
 		"@typescript-eslint/no-explicit-any": "off"
 	}
 }

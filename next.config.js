@@ -9,6 +9,10 @@ const withPWA = require("next-pwa")({
 
 const nextConfig = withPWA({
 	output: "export",
+	basePath: "/frontend",
+	images: {
+		unoptimized: true,
+	},
 	eslint: {
 		ignoreDuringBuilds: true,
 	},

@@ -3,6 +3,7 @@
 import { budget, cards, categories } from "assets/data";
 import { Icon } from "components/Icon";
 import { useCurrentBudget } from "contexts/current-budget";
+import Image from "next/image";
 import { CardTypeEnum } from "types/enums/card-type";
 import { TransactionInOut as TransactionInOutType } from "types/transaction";
 import { formatFullDate } from "utils/date";
@@ -34,7 +35,11 @@ const Card = ({ cardId }: { cardId: string }) => {
 			<span className="text-sm text-content-t">Cartao</span>
 
 			<div className="flex flex-row gap-2 items-center">
-				<img src={card.iconUrl} className="w-12 h-full rounded" />
+				<Image
+					src={card.iconUrl}
+					alt={card.name}
+					className="w-12 h-full rounded"
+				/>
 
 				<div className="flex flex-col">
 					<span>{card.name}</span>
