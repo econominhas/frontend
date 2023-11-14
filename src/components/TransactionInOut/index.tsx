@@ -25,15 +25,7 @@ export const TransactionInOut = ({ transaction, category }: Props) => {
 						border: `1px solid ${category.color}`,
 					}}
 				>
-					<Icon
-						icon={category.icon}
-						color={category.color}
-						size={0} // Irrelevant because of bug
-						style={{
-							width: "1.75rem",
-							height: "1.75rem",
-						}}
-					/>
+					<Icon icon={category.icon} color={category.color} size={7} />
 				</div>
 
 				<div className="flex flex-col justify-center">

@@ -29,6 +29,7 @@ import {
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GrConnect } from "react-icons/gr";
+import { HiMiniEyeSlash } from "react-icons/hi2";
 import {
 	MdCompareArrows,
 	MdDownload,
@@ -43,8 +44,55 @@ import {
 } from "react-icons/md";
 import { PiBabyFill, PiPlusCircleBold, PiWalletFill } from "react-icons/pi";
 
+const icons = {
+	house: BsFillHouseFill,
+	"shopping-cart": FaShoppingCart,
+	baby: PiBabyFill,
+	tv: FaWifi,
+	medkit: FaMedkit,
+	kiss: FaKissWinkHeart,
+	suitcase: FaSuitcase,
+	beach: FaUmbrellaBeach,
+	question: FaQuestionCircle,
+	upload: MdUpload,
+	download: MdDownload,
+	transfer: MdCompareArrows,
+	ad: FaAudioDescription,
+	crown: FaCrown,
+	pencil: BsPencilFill,
+	logout: MdLogout,
+	trashcan: BsFillTrashFill,
+	pluscircle: PiPlusCircleBold,
+	google: FcGoogle,
+	email: MdEmail,
+	phone: MdLocalPhone,
+	invoice: FaFileInvoiceDollar,
+	plus: FaPlus,
+	wallet: PiWalletFill,
+	gear: BsFillGearFill,
+	"arrow-left": FaArrowLeft,
+	"less-than": MdKeyboardArrowLeft,
+	"more-than": MdKeyboardArrowRight,
+	"triangle-down": BsFillCaretDownFill,
+	info: MdOutlineInfo,
+	bank: BsBank2,
+	card: BsFillCreditCardFill,
+	ticket: BsTicketFill,
+	category: MdCategory,
+	pdf: BsFileEarmarkPdfFill,
+	tag: AiFillTag,
+	bell: BsBellFill,
+	connect: GrConnect,
+	profile: BsFillPersonFill,
+	"eye-slash": HiMiniEyeSlash,
+};
+
+export type IconType = keyof typeof icons;
+
+export const iconsArray = Object.keys(icons) as Array<IconType>;
+
 interface Props {
-	icon: string;
+	icon: IconType;
 	color?: string;
 	size?: number;
 	style?: CSSProperties;
@@ -70,6 +118,10 @@ export const Icon = ({
 		props.style.width = "1.5rem";
 		props.style.height = "1.5rem";
 	}
+	if (size === 7) {
+		props.style.width = "1.75rem";
+		props.style.height = "1.75rem";
+	}
 	if (size === 8) {
 		props.style.width = "2rem";
 		props.style.height = "2rem";
@@ -78,88 +130,12 @@ export const Icon = ({
 		props.style.width = "2.5rem";
 		props.style.height = "2.5rem";
 	}
-
-	switch (icon) {
-		case "house":
-			return <BsFillHouseFill {...props} />;
-		case "shopping-cart":
-			return <FaShoppingCart {...props} />;
-		case "baby":
-			return <PiBabyFill {...props} />;
-		case "tv":
-			return <FaWifi {...props} />;
-		case "medkit":
-			return <FaMedkit {...props} />;
-		case "kiss":
-			return <FaKissWinkHeart {...props} />;
-		case "suitcase":
-			return <FaSuitcase {...props} />;
-		case "beach":
-			return <FaUmbrellaBeach {...props} />;
-		case "question":
-			return <FaQuestionCircle {...props} />;
-		case "upload":
-			return <MdUpload {...props} />;
-		case "download":
-			return <MdDownload {...props} />;
-		case "transfer":
-			return <MdCompareArrows {...props} />;
-		case "ad":
-			return <FaAudioDescription {...props} />;
-		case "crown":
-			return <FaCrown {...props} />;
-		case "pencil":
-			return <BsPencilFill {...props} />;
-		case "logout":
-			return <MdLogout {...props} />;
-		case "trashcan":
-			return <BsFillTrashFill {...props} />;
-		case "pluscircle":
-			return <PiPlusCircleBold {...props} />;
-		case "google":
-			return <FcGoogle {...props} />;
-		case "email":
-			return <MdEmail {...props} />;
-		case "phone":
-			return <MdLocalPhone {...props} />;
-		case "invoice":
-			return <FaFileInvoiceDollar {...props} />;
-		case "plus":
-			return <FaPlus {...props} />;
-		case "wallet":
-			return <PiWalletFill {...props} />;
-		case "gear":
-			return <BsFillGearFill {...props} />;
-		case "arrow-left":
-			return <FaArrowLeft {...props} />;
-		case "less-than":
-			return <MdKeyboardArrowLeft {...props} />;
-		case "more-than":
-			return <MdKeyboardArrowRight {...props} />;
-		case "triangle-down":
-			return <BsFillCaretDownFill {...props} />;
-		case "info":
-			return <MdOutlineInfo {...props} />;
-		case "bank":
-			return <BsBank2 {...props} />;
-		case "card":
-			return <BsFillCreditCardFill {...props} />;
-		case "ticket":
-			return <BsTicketFill {...props} />;
-		case "category":
-			return <MdCategory {...props} />;
-		case "pdf":
-			return <BsFileEarmarkPdfFill {...props} />;
-		case "tag":
-			return <AiFillTag {...props} />;
-		case "bell":
-			return <BsBellFill {...props} />;
-		case "connect":
-			return <GrConnect {...props} />;
-		case "profile":
-			return <BsFillPersonFill {...props} />;
-
-		default:
-			return <></>;
+	if (size === 14) {
+		props.style.width = "3.5rem";
+		props.style.height = "3.5rem";
 	}
+
+	const IconToRender = icons[icon];
+
+	return <IconToRender {...props} />;
 };

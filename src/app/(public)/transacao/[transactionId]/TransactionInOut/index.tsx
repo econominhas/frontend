@@ -66,15 +66,7 @@ export const TransactionInOut = ({ transaction }: Props) => {
 						border: `2px solid ${category.color}`,
 					}}
 				>
-					<Icon
-						icon={category.icon}
-						color={category.color}
-						size={0} // Irrelevant because of bug
-						style={{
-							width: "3.5rem",
-							height: "3.5rem",
-						}}
-					/>
+					<Icon icon={category.icon} color={category.color} size={14} />
 				</div>
 
 				<span className="text-2xl">{transaction.name}</span>

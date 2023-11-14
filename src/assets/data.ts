@@ -9,6 +9,8 @@ import { TransactionTypeEnum } from "types/enums/transaction-type";
 import { Plan } from "types/plan";
 import { TransactionInOut, TransactionTransfer } from "types/transaction";
 
+import { colors } from "./colors";
+
 export const transactions: Array<TransactionInOut | TransactionTransfer> = [
 	{
 		transactionId: "4a1ec10c-5189-465e-8c32-554258cfa0d8",
@@ -71,7 +73,7 @@ export const categories: Record<string, Category> = {
 		accountId: "foo",
 		name: "Moradia",
 		icon: "house",
-		color: "#5C64DE",
+		color: colors.majorelleBlue,
 		active: true,
 	},
 	foo2: {
@@ -79,7 +81,7 @@ export const categories: Record<string, Category> = {
 		accountId: "foo",
 		name: "Família / Filhos",
 		icon: "baby",
-		color: "#007472",
+		color: colors.skobeloff,
 		active: true,
 	},
 	foo3: {
@@ -87,7 +89,7 @@ export const categories: Record<string, Category> = {
 		accountId: "foo",
 		name: "Mercado",
 		icon: "shopping-cart",
-		color: "#EA744C",
+		color: colors.burntSienna,
 		active: true,
 	},
 	foo4: {
@@ -95,7 +97,7 @@ export const categories: Record<string, Category> = {
 		accountId: "foo",
 		name: "Outros Gastos",
 		icon: "question",
-		color: "#FEC100",
+		color: colors.amber,
 		active: true,
 	},
 	foo5: {
@@ -103,7 +105,7 @@ export const categories: Record<string, Category> = {
 		accountId: "foo",
 		name: "TV / Internet / Telefone",
 		icon: "tv",
-		color: "#B6D6A8",
+		color: colors.lightMossGreen,
 		active: true,
 	},
 	foo6: {
@@ -111,7 +113,7 @@ export const categories: Record<string, Category> = {
 		accountId: "foo",
 		name: "Saúde",
 		icon: "medkit",
-		color: "#EC4B4B",
+		color: colors.carminePink,
 		active: true,
 	},
 	foo7: {
@@ -119,7 +121,7 @@ export const categories: Record<string, Category> = {
 		accountId: "foo",
 		name: "Cuidados Pessoais",
 		icon: "kiss",
-		color: "#E060CE",
+		color: colors.orchid,
 		active: true,
 	},
 	foo8: {
@@ -127,7 +129,7 @@ export const categories: Record<string, Category> = {
 		accountId: "foo",
 		name: "Despesas do Trabalho",
 		icon: "suitcase",
-		color: "#9901FE",
+		color: colors.vividViolet,
 		active: true,
 	},
 	foo9: {
@@ -135,7 +137,7 @@ export const categories: Record<string, Category> = {
 		accountId: "foo",
 		name: "Viagens",
 		icon: "beach",
-		color: "#46BDC7",
+		color: colors.seaSerpent,
 		active: true,
 	},
 };
@@ -179,7 +181,7 @@ export const bankProviders: Record<string, Bank> = {
 		code: "123",
 		iconUrl:
 			"https://logospng.org/download/bradesco/logo-bradesco-escudo-1024.png",
-		color: "#F0152D",
+		color: colors.bradesco,
 	},
 	nubank: {
 		bankId: "nubank",
@@ -187,7 +189,7 @@ export const bankProviders: Record<string, Bank> = {
 		code: "321",
 		iconUrl:
 			"https://seucreditodigital.com.br/wp-content/uploads/2021/05/nova-logomarca-do-Nubank-721x720.jpg",
-		color: "#820BD1",
+		color: colors.nubank,
 	},
 };
 
@@ -222,7 +224,7 @@ export const cardProviders: Record<string, CardProvider> = {
 		name: "Xp Infinity One",
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2019/07/xp-investimentos-logo-8.png",
-		color: "#1B1A1D",
+		color: colors.xpInvestimentos,
 		type: CardTypeEnum.POSTPAID,
 		network: NetworkEnum.VISA,
 		statementDays: 14,
@@ -233,7 +235,7 @@ export const cardProviders: Record<string, CardProvider> = {
 		name: "Alelo Refeicao",
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2017/09/alelo-logo-1-599x393.png",
-		color: "#017958",
+		color: colors.aleloRefeicao,
 		type: CardTypeEnum.PREPAID,
 		network: NetworkEnum.ELO,
 	},
@@ -246,7 +248,7 @@ export const cards: Record<string, Card> = {
 		cardProviderId: "xp-infinity-one",
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2019/07/xp-investimentos-logo-8.png",
-		color: "#1B1A1D",
+		color: colors.xpInvestimentos,
 		type: CardTypeEnum.POSTPAID,
 		network: NetworkEnum.VISA,
 		name: "Xp Investimentos",
@@ -265,7 +267,7 @@ export const cards: Record<string, Card> = {
 		cardProviderId: "nubank",
 		iconUrl:
 			"https://seucreditodigital.com.br/wp-content/uploads/2021/05/nova-logomarca-do-Nubank-721x720.jpg",
-		color: "#820BD1",
+		color: colors.nubank,
 		type: CardTypeEnum.POSTPAID,
 		network: NetworkEnum.MASTERCARD,
 		name: "Nubank",
@@ -284,7 +286,7 @@ export const cards: Record<string, Card> = {
 		cardProviderId: "aleloVa",
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2017/09/alelo-logo-1-599x393.png",
-		color: "#017958",
+		color: colors.aleloRefeicao,
 		type: CardTypeEnum.PREPAID,
 		network: NetworkEnum.ELO,
 		name: "Alelo VA",

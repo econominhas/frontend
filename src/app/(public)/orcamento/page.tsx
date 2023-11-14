@@ -7,7 +7,8 @@ import { NoBudget } from "components/NoBudget";
 import { Space } from "components/Space";
 import { useCurrentBudget } from "contexts/current-budget";
 import Link from "next/link";
-import { PieChart, Pie, Cell } from "recharts";
+import { useState } from "react";
+import { PieChart, Pie, Cell, Legend } from "recharts";
 import { getTextColor } from "utils/color";
 import { getMonthsArray, getYear } from "utils/date";
 import { formatMoney } from "utils/format";
@@ -88,6 +89,8 @@ const TableCell = ({
 };
 
 const Budget = () => {
+	const [tab, setTab] = useState<"table" | "pie-chart" | "categories">("table");
+
 	const { currentBudgetDate } = useCurrentBudget();
 
 	if (budget.year.toString() !== getYear(currentBudgetDate)) {
@@ -99,114 +102,159 @@ const Budget = () => {
 			<Header title="Orçamento" hasYearlyIndicator />
 
 			<main className="min-h-[100dvh] max-w-[100dvw] w-full flex flex-col container-padding">
-				<h2 className="font-bold text-lg text-center">
-					Tabela de gastos planejados
-				</h2>
+				<div className="tabs tabs-boxed grid grid-cols-3">
+					<button
+						className={`tab ${tab === "table" ? "tab-active" : ""}`}
+						onClick={() => setTab("table")}
+					>
+						Tabela
+					</button>
+					<button
+						className={`tab ${tab === "pie-chart" ? "tab-active" : ""}`}
+						onClick={() => setTab("pie-chart")}
+					>
+						Gráfico
+					</button>
+					<button
+						className={`tab ${tab === "categories" ? "tab-active" : ""}`}
+						onClick={() => setTab("categories")}
+					>
+						Categorias
+					</button>
+				</div>
 
-				<section className="grid grid-cols-1 overflow-auto whitespace-nowrap">
-					<table className="table-fixed w-full border-separate">
-						<tbody>
-							<tr>
-								<td className="w-12 sticky left-0 bg-white border border-solid border-white" />
-								{months.map((m) => (
-									<TableCell key={m.name} content={m.name} bgGray />
-								))}
-							</tr>
+				<Space />
 
-							{categories.map((c, idx) => (
-								<tr key={`${c.categoryId}-${idx}`}>
-									<TableCell
-										header={{
-											color: c.color,
-											icon: c.icon,
-										}}
-									/>
-									{months.map((m) => (
-										<TableCell
-											key={`${m.id}-${c.categoryId}-${idx}`}
-											money
-											content={budget.budgets[m.id]?.[c.categoryId] || 0}
-										/>
+				{tab === "table" && (
+					<section>
+						<h2 className="font-bold text-lg text-center">
+							Tabela de gastos planejados
+						</h2>
+
+						<Space />
+
+						<div className="grid grid-cols-1 overflow-auto whitespace-nowrap">
+							<table className="table-fixed w-full border-separate">
+								<tbody>
+									<tr>
+										<td className="w-12 sticky left-0 bg-white border border-solid border-white" />
+										{months.map((m) => (
+											<TableCell key={m.name} content={m.name} bgGray />
+										))}
+									</tr>
+
+									{categories.map((c, idx) => (
+										<tr key={`${c.categoryId}-${idx}`}>
+											<TableCell
+												header={{
+													color: c.color,
+													icon: c.icon,
+												}}
+											/>
+											{months.map((m) => (
+												<TableCell
+													key={`${m.id}-${c.categoryId}-${idx}`}
+													money
+													content={budget.budgets[m.id]?.[c.categoryId] || 0}
+												/>
+											))}
+										</tr>
 									))}
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</section>
+								</tbody>
+							</table>
+						</div>
+					</section>
+				)}
 
-				<Space />
+				{tab === "pie-chart" && (
+					<section className="flex flex-col items-center">
+						<h2 className="font-bold text-lg text-center">Gráfico</h2>
 
-				<section className="flex flex-col items-center">
-					<h2 className="font-bold text-lg text-center">Gráfico</h2>
+						<PieChart width={400} height={400}>
+							<Pie
+								isAnimationActive={false}
+								data={budgetsByCategory.map((b) => ({
+									name: getBudgetPercentage(b.budget),
+									value: b.budget,
+								}))}
+								width={250}
+								height={250}
+								startAngle={89}
+								endAngle={360 + 89}
+								outerRadius={100}
+								dataKey="value"
+								label={(p) => `${p.name}%`}
+							>
+								{budgetsByCategory.map((b) => (
+									<Cell key={b.id} fill={b.color} />
+								))}
+							</Pie>
+							<Legend
+								payload={budgetsByCategory.map((c) => ({
+									value: c.name,
+									color: c.color,
+								}))}
+							/>
+						</PieChart>
+					</section>
+				)}
 
-					<PieChart width={400} height={300}>
-						<Pie
-							isAnimationActive={false}
-							data={budgetsByCategory.map((b) => ({
-								name: getBudgetPercentage(b.budget),
-								value: b.budget,
-							}))}
-							width={250}
-							height={250}
-							startAngle={89}
-							endAngle={360 + 89}
-							outerRadius={100}
-							fill="#8884d8"
-							dataKey="value"
-							label={(p) => `${p.name}%`}
-						>
-							{budgetsByCategory.map((b) => (
-								<Cell key={b.id} fill={b.color} />
-							))}
-						</Pie>
-					</PieChart>
-				</section>
+				{tab === "categories" && (
+					<section>
+						<h2 className="font-bold text-lg text-center">Gasto total</h2>
 
-				<Space />
-
-				<section>
-					<h2 className="font-bold text-lg text-center">Gasto total</h2>
-
-					<table className="table-fixed w-full border-separate">
-						<thead>
-							<tr>
-								<td className="bg-gray font-bold container-padding border border-solid border-gray-900">
-									Categoria
-								</td>
-								<td className="bg-gray font-bold container-padding border border-solid border-gray-900">
-									Gasto total no ano
-								</td>
-							</tr>
-						</thead>
-						<tbody>
-							{budgetsByCategory.map((b, idx) => (
-								<tr key={`${b.id}-${idx}`}>
-									<th
-										className="container-padding border border-solid border-gray-900 text-left flex flex-row gap-2 items-center"
-										style={{
-											backgroundColor: b.color,
-											color: getTextColor(b.color),
-										}}
-									>
-										<Icon icon={b.icon} size={6} />
-										<span>{b.name}</span>
-									</th>
-
-									<td className="container-padding border border-solid border-gray-900 text-right">
-										{formatMoney(b.budget)}
+						<table className="table-fixed w-full border-separate">
+							<thead>
+								<tr>
+									<td className="bg-gray font-bold container-padding border border-solid border-gray-900">
+										Categoria
+									</td>
+									<td className="bg-gray font-bold container-padding border border-solid border-gray-900">
+										Gasto total no ano
 									</td>
 								</tr>
-							))}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								{budgetsByCategory.map((b, idx) => (
+									<tr key={`${b.id}-${idx}`}>
+										<th
+											className="container-padding border border-solid border-gray-900 text-left flex flex-row gap-2 items-center"
+											style={{
+												backgroundColor: b.color,
+												color: getTextColor(b.color),
+											}}
+										>
+											<Icon icon={b.icon} size={6} />
+											<span>{b.name}</span>
+										</th>
+
+										<td className="container-padding border border-solid border-gray-900 text-right">
+											{formatMoney(b.budget)}
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</section>
+				)}
+
+				<div className="divider" />
+
+				<section className="flex flex-col gap-2">
+					<Link href="/categorias" className="btn w-full">
+						<Icon icon="category" />
+						Editar categorias
+					</Link>
+
+					<Link href="/editar-orcamento" className="btn w-full">
+						<Icon icon="pencil" />
+						Editar orçamento
+					</Link>
 				</section>
 
 				<Space />
-
-				<Link href="/categorias" className="btn w-full">
-					<Icon icon="pencil" />
-					Editar categorias
-				</Link>
+				<Space />
+				<Space />
 			</main>
 		</>
 	);
