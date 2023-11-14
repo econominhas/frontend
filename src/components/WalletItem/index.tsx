@@ -1,5 +1,5 @@
+import { Icon } from "components/Icon";
 import Link from "next/link";
-import { MdKeyboardArrowRight } from "react-icons/md";
 
 interface Props {
 	redirectTo: string;
@@ -36,7 +36,7 @@ export const WalletItem = ({
 			</div>
 
 			<button className="absolute right-2 top-7 text-2xl flex justify-end">
-				<MdKeyboardArrowRight />
+				<Icon icon="more-than" />
 			</button>
 		</Link>
 	);

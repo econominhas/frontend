@@ -1,6 +1,5 @@
+import { Icon } from "components/Icon";
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import { MdEmail, MdLocalPhone } from "react-icons/md";
 
 const GOOGLE_LINK_AUTH = process.env["GOOGLE_LINK_AUTH"];
 
@@ -19,7 +18,7 @@ const Auth = () => {
 					className="btn btn-google w-full normal-case"
 					href={GOOGLE_LINK_AUTH || "#"}
 				>
-					<FcGoogle className="mr-2" />
+					<Icon icon="google" className="mr-2" />
 					Continuar com Google
 				</Link>
 				<div className="divider">OU</div>
@@ -30,7 +29,7 @@ const Auth = () => {
 						className="btn btn-primary w-full normal-case"
 						href="/login/e-mail"
 					>
-						<MdEmail className="mr-2" />
+						<Icon icon="email" className="mr-2" />
 						Continuar com E-mail
 					</Link>
 					<Link
@@ -39,7 +38,7 @@ const Auth = () => {
 						className="btn btn-secondary w-full normal-case"
 						href="/login/telefone"
 					>
-						<MdLocalPhone className="mr-2" />
+						<Icon icon="phone" className="mr-2" />
 						Continuar com Telefone
 					</Link>
 				</div>

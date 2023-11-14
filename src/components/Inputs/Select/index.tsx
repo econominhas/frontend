@@ -3,7 +3,6 @@ import { colors } from "assets/colors";
 import { Icon } from "components/Icon";
 import React from "react";
 import { Fragment } from "react";
-import { BsFillCaretDownFill } from "react-icons/bs";
 import { getTextColor } from "utils/color";
 
 interface Props<T> {
@@ -103,7 +102,7 @@ export function SelectInput<T extends Record<string, any>>({
 								)}
 
 								<span className="pointer-events-none absolute inset-y-0 right-2 ml-3 flex items-center pr-2 text-primary-content">
-									<BsFillCaretDownFill />
+									<Icon icon="triangle-down" />
 								</span>
 							</div>
 						</Listbox.Button>

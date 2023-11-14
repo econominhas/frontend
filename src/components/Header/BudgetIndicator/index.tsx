@@ -1,7 +1,7 @@
 "use client";
 
+import { Icon } from "components/Icon";
 import { useCurrentBudget } from "contexts/current-budget";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { getMonthNameAndYear, getYear } from "utils/date";
 
 interface Props {
@@ -29,7 +29,7 @@ export const BudgetIndicator = ({ yearly }: Props) => {
 					}
 				}}
 			>
-				<MdKeyboardArrowLeft />
+				<Icon icon="less-than" />
 			</button>
 			<div className="p-2">
 				<h2 className="font-bold text-sm">
@@ -48,7 +48,7 @@ export const BudgetIndicator = ({ yearly }: Props) => {
 					}
 				}}
 			>
-				<MdKeyboardArrowRight />
+				<Icon icon="more-than" />
 			</button>
 		</div>
 	);

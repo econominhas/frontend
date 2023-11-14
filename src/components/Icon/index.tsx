@@ -1,6 +1,21 @@
 import { CSSProperties } from "react";
-import { BsFillHouseFill } from "react-icons/bs";
+import { AiFillTag } from "react-icons/ai";
 import {
+	BsFillHouseFill,
+	BsFillTrashFill,
+	BsPencilFill,
+	BsFillGearFill,
+	BsFillCaretDownFill,
+	BsBank2,
+	BsFillCreditCardFill,
+	BsTicketFill,
+	BsFileEarmarkPdfFill,
+	BsBellFill,
+	BsFillPersonFill,
+} from "react-icons/bs";
+import {
+	FaAudioDescription,
+	FaCrown,
 	FaKissWinkHeart,
 	FaMedkit,
 	FaQuestionCircle,
@@ -8,20 +23,44 @@ import {
 	FaSuitcase,
 	FaUmbrellaBeach,
 	FaWifi,
+	FaFileInvoiceDollar,
+	FaPlus,
+	FaArrowLeft,
 } from "react-icons/fa";
-import { MdCompareArrows, MdDownload, MdUpload } from "react-icons/md";
-import { PiBabyFill } from "react-icons/pi";
+import { FcGoogle } from "react-icons/fc";
+import { GrConnect } from "react-icons/gr";
+import {
+	MdCompareArrows,
+	MdDownload,
+	MdLogout,
+	MdUpload,
+	MdEmail,
+	MdLocalPhone,
+	MdKeyboardArrowLeft,
+	MdKeyboardArrowRight,
+	MdOutlineInfo,
+	MdCategory,
+} from "react-icons/md";
+import { PiBabyFill, PiPlusCircleBold, PiWalletFill } from "react-icons/pi";
 
 interface Props {
 	icon: string;
 	color?: string;
-	size: number;
+	size?: number;
 	style?: CSSProperties;
+	className?: string;
 }
 
-export const Icon = ({ icon, color, size, style, ...propsToPass }: Props) => {
+export const Icon = ({
+	icon,
+	color,
+	size,
+	style,
+	className,
+	...propsToPass
+}: Props) => {
 	const props = {
-		className: `w-${size} h-${size}`,
+		className: `w-${size} h-${size} ${className || ""}`,
 		style: { color, ...(style || {}) },
 		...propsToPass,
 	};
@@ -65,6 +104,60 @@ export const Icon = ({ icon, color, size, style, ...propsToPass }: Props) => {
 			return <MdDownload {...props} />;
 		case "transfer":
 			return <MdCompareArrows {...props} />;
+		case "ad":
+			return <FaAudioDescription {...props} />;
+		case "crown":
+			return <FaCrown {...props} />;
+		case "pencil":
+			return <BsPencilFill {...props} />;
+		case "logout":
+			return <MdLogout {...props} />;
+		case "trashcan":
+			return <BsFillTrashFill {...props} />;
+		case "pluscircle":
+			return <PiPlusCircleBold {...props} />;
+		case "google":
+			return <FcGoogle {...props} />;
+		case "email":
+			return <MdEmail {...props} />;
+		case "phone":
+			return <MdLocalPhone {...props} />;
+		case "invoice":
+			return <FaFileInvoiceDollar {...props} />;
+		case "plus":
+			return <FaPlus {...props} />;
+		case "wallet":
+			return <PiWalletFill {...props} />;
+		case "gear":
+			return <BsFillGearFill {...props} />;
+		case "arrow-left":
+			return <FaArrowLeft {...props} />;
+		case "less-than":
+			return <MdKeyboardArrowLeft {...props} />;
+		case "more-than":
+			return <MdKeyboardArrowRight {...props} />;
+		case "triangle-down":
+			return <BsFillCaretDownFill {...props} />;
+		case "info":
+			return <MdOutlineInfo {...props} />;
+		case "bank":
+			return <BsBank2 {...props} />;
+		case "card":
+			return <BsFillCreditCardFill {...props} />;
+		case "ticket":
+			return <BsTicketFill {...props} />;
+		case "category":
+			return <MdCategory {...props} />;
+		case "pdf":
+			return <BsFileEarmarkPdfFill {...props} />;
+		case "tag":
+			return <AiFillTag {...props} />;
+		case "bell":
+			return <BsBellFill {...props} />;
+		case "connect":
+			return <GrConnect {...props} />;
+		case "profile":
+			return <BsFillPersonFill {...props} />;
 
 		default:
 			return <></>;

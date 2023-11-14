@@ -1,6 +1,6 @@
 import { bankAccounts } from "assets/data";
 import { Header } from "components/Header";
-import { BsFillTrashFill, BsPencilFill } from "react-icons/bs";
+import { Icon } from "components/Icon";
 import { formatBankAccountNumber, formatMoney } from "utils/format";
 
 interface Props {
@@ -34,11 +34,11 @@ const BankAccount = ({ params }: Props) => {
 				</div>
 
 				<button className="w-full btn">
-					<BsPencilFill />
+					<Icon icon="pencil" />
 					Editar conta bancária
 				</button>
 				<button className="w-full btn btn-error">
-					<BsFillTrashFill />
+					<Icon icon="trashcan" />
 					Excluir
 				</button>
 			</main>

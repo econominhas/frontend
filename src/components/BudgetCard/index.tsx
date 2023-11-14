@@ -1,6 +1,7 @@
 "use client";
 
 import { colors } from "assets/colors";
+import { Icon } from "components/Icon";
 import { Cell, Pie, PieChart } from "recharts";
 import { MonthBudget } from "types/budget";
 import { formatMoney } from "utils/format";
@@ -59,8 +60,8 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 						]}
 						width={250}
 						height={250}
-						cx="50%"
-						cy="50%"
+						startAngle={89}
+						endAngle={360 + 89}
 						labelLine={false}
 						outerRadius={100}
 						fill="#8884d8"
@@ -136,19 +137,8 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 				{remainingBudget < 0 && (
 					<div className="alert alert-info mt-2 text-sm">
 						<div className="flex items-center">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								className="w-16 h-16 mx-2 stroke-current"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-								></path>
-							</svg>
+							<Icon icon="info" size={16} className="mx-2 stroke-current" />
+
 							<label>
 								Suas <u>finanças e orçamentos</u> serão{" "}
 								<strong>automaticamente</strong> ajustados ao final do mês, o

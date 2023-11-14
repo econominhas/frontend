@@ -1,7 +1,7 @@
 "use client";
 
+import { Icon } from "components/Icon";
 import { useRouter } from "next/navigation";
-import { FaArrowLeft } from "react-icons/fa";
 
 import { BudgetIndicator } from "./BudgetIndicator";
 
@@ -30,7 +30,7 @@ export const Header = ({
 						className="rounded-full bg-secondary text-secondary-content p-2 absolute top-1/4 left-4"
 						onClick={() => router.back()}
 					>
-						<FaArrowLeft />
+						<Icon icon="arrow-left" />
 					</button>
 				)}
 				<div className="w-full">

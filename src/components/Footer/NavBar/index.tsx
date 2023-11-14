@@ -1,11 +1,9 @@
 "use client";
 
+import { Icon } from "components/Icon";
 import { useAddTransaction } from "contexts/add-transaction";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BsFillGearFill, BsFillHouseFill } from "react-icons/bs";
-import { FaFileInvoiceDollar, FaPlus } from "react-icons/fa";
-import { PiWalletFill } from "react-icons/pi";
 
 export const NavBar = () => {
 	const pathname = usePathname();
@@ -20,7 +18,7 @@ export const NavBar = () => {
 				data-tip="Orçamento"
 				href="/orcamento"
 			>
-				<FaFileInvoiceDollar />
+				<Icon icon="invoice" />
 				<span className="text-xs mt-1">Orçamento</span>
 			</Link>
 
@@ -31,7 +29,7 @@ export const NavBar = () => {
 				data-tip="Home"
 				href="/"
 			>
-				<BsFillHouseFill />
+				<Icon icon="house" />
 				<span className="text-xs mt-1">Home</span>
 			</Link>
 
@@ -44,7 +42,7 @@ export const NavBar = () => {
 				}}
 				onClick={() => setActive(true)}
 			>
-				<FaPlus />
+				<Icon icon="plus" />
 			</button>
 
 			<Link
@@ -54,19 +52,19 @@ export const NavBar = () => {
 				data-tip="Carteira"
 				href="/carteira"
 			>
-				<PiWalletFill />
+				<Icon icon="wallet" />
 				<span className="text-xs mt-1">Carteira</span>
 			</Link>
 
 			<Link
 				className={`tooltip flex flex-col justify-center ${
-					pathname === "/ajustes" ? "text-white" : ""
+					pathname === "/conta" ? "text-white" : ""
 				}`}
-				data-tip="Ajustes"
-				href="/ajustes"
+				data-tip="Conta"
+				href="/conta"
 			>
-				<BsFillGearFill />
-				<span className="text-xs mt-1">Ajustes</span>
+				<Icon icon="profile" />
+				<span className="text-xs mt-1">Conta</span>
 			</Link>
 		</div>
 	);

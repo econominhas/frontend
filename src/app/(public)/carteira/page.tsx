@@ -5,10 +5,10 @@ import {
 	cards as cardsData,
 } from "assets/data";
 import { Header } from "components/Header";
+import { Icon } from "components/Icon";
 import { Space } from "components/Space";
 import { WalletItem } from "components/WalletItem";
 import Link from "next/link";
-import { PiPlusCircleBold } from "react-icons/pi";
 import { PostpaidCard, PrepaidCard } from "types/card";
 import { CardTypeEnum } from "types/enums/card-type";
 import { formatBankAccountNumber } from "utils/format";
@@ -72,7 +72,7 @@ const Wallet = () => {
 						))}
 
 						<Link href="/adicionar-conta" className="btn">
-							<PiPlusCircleBold /> Adicionar nova conta
+							<Icon icon="pluscircle" /> Adicionar nova conta
 						</Link>
 					</div>
 				</section>
@@ -103,7 +103,7 @@ const Wallet = () => {
 							href={`/adicionar-cartao?type=${CardTypeEnum.POSTPAID}`}
 							className="btn"
 						>
-							<PiPlusCircleBold /> Adicionar novo cartão
+							<Icon icon="pluscircle" /> Adicionar novo cartão
 						</Link>
 					</div>
 				</section>
@@ -134,7 +134,7 @@ const Wallet = () => {
 							href={`/adicionar-cartao?type=${CardTypeEnum.PREPAID}`}
 							className="btn"
 						>
-							<PiPlusCircleBold /> Adicionar novo vale
+							<Icon icon="pluscircle" /> Adicionar novo vale
 						</Link>
 					</div>
 				</section>

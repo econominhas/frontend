@@ -1,6 +1,6 @@
 import { cards } from "assets/data";
 import { Header } from "components/Header";
-import { BsFillTrashFill, BsPencilFill } from "react-icons/bs";
+import { Icon } from "components/Icon";
 import { CardTypeEnum } from "types/enums/card-type";
 import { formatMoney } from "utils/format";
 
@@ -46,11 +46,11 @@ const Card = ({ params }: Props) => {
 				</div>
 
 				<button className="w-full btn">
-					<BsPencilFill />
+					<Icon icon="pencil" />
 					Editar cartão
 				</button>
 				<button className="w-full btn btn-error">
-					<BsFillTrashFill />
+					<Icon icon="trashcan" />
 					Excluir
 				</button>
 			</main>

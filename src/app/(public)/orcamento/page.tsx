@@ -6,6 +6,7 @@ import { Icon } from "components/Icon";
 import { NoBudget } from "components/NoBudget";
 import { Space } from "components/Space";
 import { useCurrentBudget } from "contexts/current-budget";
+import Link from "next/link";
 import { PieChart, Pie, Cell } from "recharts";
 import { getTextColor } from "utils/color";
 import { getMonthsArray, getYear } from "utils/date";
@@ -147,8 +148,8 @@ const Budget = () => {
 							}))}
 							width={250}
 							height={250}
-							cx="50%"
-							cy="50%"
+							startAngle={89}
+							endAngle={360 + 89}
 							outerRadius={100}
 							fill="#8884d8"
 							dataKey="value"
@@ -199,6 +200,13 @@ const Budget = () => {
 						</tbody>
 					</table>
 				</section>
+
+				<Space />
+
+				<Link href="/categorias" className="btn w-full">
+					<Icon icon="pencil" />
+					Editar categorias
+				</Link>
 			</main>
 		</>
 	);

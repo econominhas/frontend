@@ -6,6 +6,7 @@ import { CardTypeEnum } from "types/enums/card-type";
 import { NetworkEnum } from "types/enums/network";
 import { PayAtEnum } from "types/enums/pay-at";
 import { TransactionTypeEnum } from "types/enums/transaction-type";
+import { Plan } from "types/plan";
 import { TransactionInOut, TransactionTransfer } from "types/transaction";
 
 export const transactions: Array<TransactionInOut | TransactionTransfer> = [
@@ -291,5 +292,34 @@ export const cards: Record<string, Card> = {
 
 		// VA, VR, VT
 		balance: 1000,
+	},
+};
+
+export const plans: Record<string, Plan> = {
+	free: {
+		planId: "free",
+		name: "Gratuito",
+		icon: "ad",
+		limits: {
+			bankAccounts: 1,
+			postpaidCard: 1,
+			prepaidCard: 0,
+			categories: 10,
+			transactionsPerMonth: 100,
+			recurrentTransactions: 0,
+		},
+	},
+	premium: {
+		planId: "premium",
+		name: "Premium",
+		icon: "crown",
+		limits: {
+			bankAccounts: 1,
+			postpaidCard: 1,
+			prepaidCard: 0,
+			categories: 10,
+			transactionsPerMonth: 100,
+			recurrentTransactions: 0,
+		},
 	},
 };

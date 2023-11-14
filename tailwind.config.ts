@@ -38,6 +38,9 @@ module.exports = {
 					".text-content-t": {
 						color: "#33333380",
 					},
+					".text-yellow": {
+						color: "#ffda29",
+					},
 					".btn-google": {
 						"background-color": "#ffffff",
 						border: "1px solid #747775",
