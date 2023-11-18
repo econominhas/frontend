@@ -1,8 +1,9 @@
 "use client";
 
-import { TextInput } from "components/Inputs/Text";
+import { PhoneInput } from "components/Inputs/Phone";
 import { useRouter } from "next/navigation";
 import { useForm, useFormState } from "react-hook-form";
+import { CountryEnum } from "types/enums/country";
 
 interface IForm {
 	phone: string;
@@ -39,9 +40,10 @@ const Phone = () => {
 				className="flex items-center justify-center flex-col gap-6"
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<TextInput
+				<PhoneInput
+					id="phone"
 					label="Telefone"
-					mask="(99) 99999?-9999"
+					country={CountryEnum.BR}
 					value=""
 					onChange={(val: string) => {}}
 				/>

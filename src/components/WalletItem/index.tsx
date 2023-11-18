@@ -21,9 +21,9 @@ export const WalletItem = ({
 	return (
 		<Link
 			href={redirectTo}
-			className="relative grid grid-cols-7 gap-1 items-center bg-accent text-accent-content container-padding rounded"
+			className="relative grid grid-cols-7 gap-2 items-center bg-accent text-accent-content container-padding rounded"
 		>
-			<img src={iconUrl} alt={label} className="w-12 h-full rounded" />
+			<img src={iconUrl} alt={label} className="max-w-12 max-h-12 rounded" />
 
 			<div className="flex flex-col col-span-3">
 				<span className="font-semibold">{name}</span>

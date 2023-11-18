@@ -50,6 +50,7 @@ const AddCategory = () => {
 				<section className="w-full">
 					<form>
 						<TextInput
+							id="name"
 							label="Nome"
 							value={state.name}
 							onChange={(v) => setData("name", v)}

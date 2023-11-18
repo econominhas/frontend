@@ -2,26 +2,27 @@ import { Listbox, Transition } from "@headlessui/react";
 import { colors } from "assets/colors";
 import { Icon } from "components/Icon";
 import React from "react";
-import { Fragment } from "react";
 import { getTextColor } from "utils/color";
 
 interface Props<T> {
+	id: string;
 	label: string;
 	toBeSelectedLabel?: string;
 	data: Array<T>;
 	disabled?: boolean;
 	value?: string;
 	fieldNames: {
-		id: keyof T;
-		label: keyof T;
-		color?: keyof T;
-		icon?: keyof T;
-		iconUrl?: keyof T;
+		id: Leaves<T>;
+		label: Leaves<T>;
+		color?: Leaves<T>;
+		icon?: Leaves<T>;
+		iconUrl?: Leaves<T>;
 	};
 	onChange: (val: any) => void;
 }
 
 export function SelectInput<T extends Record<string, any>>({
+	id,
 	label,
 	toBeSelectedLabel,
 	data,
@@ -33,7 +34,7 @@ export function SelectInput<T extends Record<string, any>>({
 	const selected = data.find((d) => d[fieldNames.id] === value);
 
 	return (
-		<Listbox disabled={disabled} value={selected} onChange={onChange}>
+		<Listbox name={id} disabled={disabled} value={selected} onChange={onChange}>
 			{({ open }) => (
 				<>
 					<Listbox.Label className="block text-sm leading-6">
@@ -109,7 +110,7 @@ export function SelectInput<T extends Record<string, any>>({
 
 						<Transition
 							show={open}
-							as={Fragment}
+							as={React.Fragment}
 							leave="transition ease-in duration-100"
 							leaveFrom="opacity-100"
 							leaveTo="opacity-0"

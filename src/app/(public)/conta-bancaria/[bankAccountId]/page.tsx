@@ -19,7 +19,7 @@ const BankAccount = ({ params }: Props) => {
 			<main className="min-h-[100dvh] w-full flex flex-col items-center container-padding gap-2">
 				<img
 					className="rounded-full max-w-24 max-h-24"
-					src={bankAccount.iconUrl}
+					src={bankAccount.bank.iconUrl}
 					alt={bankAccount.name}
 				/>
 

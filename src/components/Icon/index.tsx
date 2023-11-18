@@ -30,6 +30,7 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { GrConnect } from "react-icons/gr";
 import { HiMiniEyeSlash } from "react-icons/hi2";
+import { ImClock2 } from "react-icons/im";
 import {
 	MdCompareArrows,
 	MdDownload,
@@ -85,6 +86,7 @@ const icons = {
 	connect: GrConnect,
 	profile: BsFillPersonFill,
 	"eye-slash": HiMiniEyeSlash,
+	clock: ImClock2,
 };
 
 export type IconType = keyof typeof icons;

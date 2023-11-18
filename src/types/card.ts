@@ -18,19 +18,15 @@ interface BaseCard {
 	cardId: string;
 	accountId: string;
 	cardProviderId: string;
-	iconUrl: string;
-	color: string;
-	type: CardTypeEnum;
-	network: NetworkEnum;
 	name: string;
 	lastFourDigits: string;
+	cardProvider: CardProvider;
 }
 
 // Credit cards
 export interface PostpaidCard extends BaseCard {
 	type: CardTypeEnum.POSTPAID;
 	dueDay: number;
-	statementDays: number;
 	limit: number;
 	payAt: PayAtEnum;
 	payWithBankAccountId: string;

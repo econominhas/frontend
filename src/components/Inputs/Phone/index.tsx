@@ -39,6 +39,7 @@ export function PhoneInput({
 			</label>
 			<input
 				id={id}
+				name={id}
 				type="tel"
 				inputMode="numeric"
 				placeholder={placeholder || label}

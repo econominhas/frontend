@@ -48,6 +48,7 @@ export const Content = ({ category }: Props) => {
 			<section className="w-full">
 				<form>
 					<TextInput
+						id="name"
 						label="Nome"
 						value={state.name}
 						onChange={(v) => setData("name", v)}

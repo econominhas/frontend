@@ -63,7 +63,7 @@ const Wallet = () => {
 							<WalletItem
 								key={ba.bankAccountId}
 								redirectTo={`/conta-bancaria/${ba.bankAccountId}`}
-								iconUrl={ba.iconUrl}
+								iconUrl={ba.bank.iconUrl}
 								label={formatBankAccountNumber(ba.accountNumber)}
 								name={ba.name}
 								valueLabel="Saldo"
@@ -91,7 +91,7 @@ const Wallet = () => {
 							<WalletItem
 								key={c.cardId}
 								redirectTo={`/cartao/${c.cardId}`}
-								iconUrl={c.iconUrl}
+								iconUrl={c.cardProvider.iconUrl}
 								label={`**** ${c.lastFourDigits}`}
 								name={c.name}
 								valueLabel="Fatura"
@@ -122,7 +122,7 @@ const Wallet = () => {
 							<WalletItem
 								key={c.cardId}
 								redirectTo={`/cartao/${c.cardId}`}
-								iconUrl={c.iconUrl}
+								iconUrl={c.cardProvider.iconUrl}
 								label={`**** ${c.lastFourDigits}`}
 								name={c.name}
 								valueLabel="Saldo"

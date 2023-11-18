@@ -57,6 +57,7 @@ const AddCard = () => {
 			<main className="min-h-[100dvh] w-full flex flex-col pt-2 container-padding">
 				<form className="flex justify-center flex-col">
 					<SelectInput
+						id="cardProviderId"
 						label="Cartão"
 						toBeSelectedLabel="Selecionar cartão"
 						data={cardProviders.filter((c) => c.type === cardType)}
@@ -73,6 +74,7 @@ const AddCard = () => {
 					<Space />
 
 					<TextInput
+						id="lastFourDigits"
 						label="Últimos 4 digitos"
 						numeric
 						maxLength={4}
@@ -85,6 +87,7 @@ const AddCard = () => {
 					{cardType === CardTypeEnum.POSTPAID && (
 						<>
 							<SelectInput
+								id="dueDay"
 								label="Dia de vencimento"
 								disabled={!state.cardProviderId}
 								data={
@@ -105,6 +108,7 @@ const AddCard = () => {
 							<Space />
 
 							<MoneyInput
+								id="limit"
 								label="Limite"
 								value={state.limit}
 								onChange={(val) => setData("limit", val)}
@@ -113,6 +117,7 @@ const AddCard = () => {
 							<Space />
 
 							<SelectInput
+								id="payAt"
 								label="Pagar no"
 								data={[
 									{
@@ -135,13 +140,14 @@ const AddCard = () => {
 							<Space />
 
 							<SelectInput
+								id="payWithBankAccountId"
 								label="Pagar com a conta"
 								data={bankAccounts}
 								fieldNames={{
 									id: "bankAccountId",
 									label: "name",
-									color: "color",
-									iconUrl: "iconUrl",
+									color: "bank.color",
+									iconUrl: "bank.iconUrl",
 								}}
 								value={state.payWithBankAccountId}
 								onChange={(val) => setData("payWithBankAccountId", val)}
@@ -152,6 +158,7 @@ const AddCard = () => {
 					{cardType === CardTypeEnum.PREPAID && (
 						<>
 							<MoneyInput
+								id="balance"
 								label="Saldo"
 								value={state.balance}
 								onChange={(val) => setData("balance", val)}

@@ -2,7 +2,7 @@
 
 import { budget, categories as categoriesData } from "assets/data";
 import { Header } from "components/Header";
-import { Icon } from "components/Icon";
+import { Icon, IconType } from "components/Icon";
 import { NoBudget } from "components/NoBudget";
 import { Space } from "components/Space";
 import { useCurrentBudget } from "contexts/current-budget";
@@ -36,7 +36,13 @@ const budgetsByCategory = Object.values(
 		},
 		{} as Record<
 			string,
-			{ id: string; name: string; color: string; icon: string; budget: number }
+			{
+				id: string;
+				name: string;
+				color: string;
+				icon: IconType;
+				budget: number;
+			}
 		>,
 	),
 );
@@ -53,7 +59,7 @@ interface TableCellProps {
 
 	header?: {
 		color: string;
-		icon: string;
+		icon: IconType;
 	};
 }
 

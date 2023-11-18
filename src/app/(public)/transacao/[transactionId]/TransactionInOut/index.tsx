@@ -31,7 +31,7 @@ const Card = ({ cardId }: { cardId: string }) => {
 
 			<div className="flex flex-row gap-2 items-center">
 				<img
-					src={card.iconUrl}
+					src={card.cardProvider.iconUrl}
 					alt={card.name}
 					className="max-w-12 max-h-12 rounded"
 				/>
@@ -39,7 +39,7 @@ const Card = ({ cardId }: { cardId: string }) => {
 				<div className="flex flex-col">
 					<span>{card.name}</span>
 					<span>
-						{getCardType(card.type)} - {card.network}
+						{getCardType(card.type)} - {card.cardProvider.network}
 					</span>
 					<span>**** {card.lastFourDigits}</span>
 				</div>

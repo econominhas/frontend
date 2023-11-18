@@ -64,7 +64,6 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 						endAngle={360 + 89}
 						labelLine={false}
 						outerRadius={100}
-						fill="#8884d8"
 						dataKey="value"
 					>
 						<Cell fill={color(expensesPercentage)} />

@@ -4,12 +4,13 @@ import { formatMoney } from "utils/format";
 import { makeBeforeChangeValue } from "../helpers";
 
 interface Props {
+	id: string;
 	label: string;
 	value?: number;
 	onChange: (val: number) => void;
 }
 
-export function MoneyInput({ label, value, onChange }: Props) {
+export function MoneyInput({ id, label, value, onChange }: Props) {
 	const beforeChangeValue = makeBeforeChangeValue({
 		numeric: true,
 		setValueAsNumber: true,
@@ -22,6 +23,8 @@ export function MoneyInput({ label, value, onChange }: Props) {
 				<span className="label-text">{label}</span>
 			</label>
 			<input
+				id={id}
+				name={id}
 				type="text"
 				inputMode="numeric"
 				autoComplete="off"

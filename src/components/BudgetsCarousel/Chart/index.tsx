@@ -1,11 +1,11 @@
-import { Icon } from "components/Icon";
+import { Icon, IconType } from "components/Icon";
 import { formatMoney } from "utils/format";
 
 interface Props {
 	budget: number;
 	spent: number;
 	color: string;
-	icon: string;
+	icon: IconType;
 }
 
 const percentage = (total: number, partial: number) => {

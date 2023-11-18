@@ -46,6 +46,7 @@ export const AddTransaction = () => {
 			/>
 			<form className="absolute bottom-0 max-h-[90dvh] z-50 w-full bg-base-100 rounded-t-lg container-padding overflow-auto">
 				<SelectInput
+					id="type"
 					label="Tipo de transação"
 					toBeSelectedLabel="Selecione o tipo de transação"
 					value={data.type}
@@ -85,6 +86,7 @@ export const AddTransaction = () => {
 				) && (
 					<>
 						<SelectInput
+							id="categoryId"
 							label="Categoria"
 							toBeSelectedLabel="Selecione a categoria"
 							value={data.categoryId}
@@ -101,6 +103,7 @@ export const AddTransaction = () => {
 						<Space />
 
 						<MoneyInput
+							id="value"
 							label="Valor"
 							value={data.value}
 							onChange={(val) => setData("value", val)}
@@ -109,15 +112,16 @@ export const AddTransaction = () => {
 						<Space />
 
 						<SelectInput
+							id="paymentMethodId"
 							label="Método de pagamento"
 							toBeSelectedLabel="Selecione o método de pagamento"
 							value={data.paymentMethodId}
 							data={Object.values(cards)}
 							fieldNames={{
 								id: "cardId",
-								color: "color",
+								color: "cardProvider.color",
 								label: "name",
-								iconUrl: "iconUrl",
+								iconUrl: "cardProvider.iconUrl",
 							}}
 							onChange={(val) => setData("paymentMethodId", val)}
 						/>
@@ -125,6 +129,7 @@ export const AddTransaction = () => {
 						<Space />
 
 						<TextInput
+							id="name"
 							label="Nome"
 							value={data.name}
 							onChange={(val) => setData("name", val)}
@@ -135,6 +140,7 @@ export const AddTransaction = () => {
 				{data.type === TransactionTypeEnum.TRANSFER && (
 					<>
 						<MoneyInput
+							id="value"
 							label="Valor"
 							value={data.value}
 							onChange={(val) => setData("value", val)}
@@ -143,6 +149,7 @@ export const AddTransaction = () => {
 						<Space />
 
 						<TextInput
+							id="name"
 							label="Nome"
 							value={data.name}
 							onChange={(val) => setData("name", val)}
@@ -151,15 +158,16 @@ export const AddTransaction = () => {
 						<Space />
 
 						<SelectInput
+							id="bankAccountFromId"
 							label="Conta de origem"
 							toBeSelectedLabel="Selecione a conta de origem"
 							value={data.bankAccountFromId}
 							data={Object.values(bankAccounts)}
 							fieldNames={{
 								id: "bankAccountId",
-								color: "color",
+								color: "bank.color",
 								label: "name",
-								iconUrl: "iconUrl",
+								iconUrl: "bank.iconUrl",
 							}}
 							onChange={(val) => setData("bankAccountFromId", val)}
 						/>
@@ -167,15 +175,16 @@ export const AddTransaction = () => {
 						<Space />
 
 						<SelectInput
+							id="bankAccountToId"
 							label="Conta de destino"
 							toBeSelectedLabel="Selecione a conta de destino"
 							value={data.bankAccountToId}
 							data={Object.values(bankAccounts)}
 							fieldNames={{
 								id: "bankAccountId",
-								color: "color",
+								color: "bank.color",
 								label: "name",
-								iconUrl: "iconUrl",
+								iconUrl: "bank.iconUrl",
 							}}
 							onChange={(val) => setData("bankAccountToId", val)}
 						/>
@@ -194,14 +203,17 @@ export const AddTransaction = () => {
 
 				<div className={showAdvancedConfig ? "" : "hidden"}>
 					<DateInput
+						id="createdAt"
 						label="Data de criação"
 						mode="time"
 						value={data.createdAt}
+						onChange={(val) => setData("createdAt", val as Date)}
 					/>
 
 					<Space />
 
 					<TextareaInput
+						id="description"
 						label="Descrição"
 						placeholder="Máximo de 300 caracteres"
 						value={data.description}
@@ -211,9 +223,11 @@ export const AddTransaction = () => {
 					<Space />
 
 					<DateInput
+						id="budget"
 						label="Entrar no orçamento do mês"
 						mode="month"
 						value={data.budget}
+						onChange={(val) => setData("budget", val as Date)}
 					/>
 				</div>
 

@@ -1,17 +1,17 @@
-import {
-	bankAccounts,
-	cards,
-	categories,
-	plans,
-	transactions,
-} from "assets/data";
+import { bankAccounts, cards, categories, plans } from "assets/data";
 import { Header } from "components/Header";
-import { Icon } from "components/Icon";
+import { Icon, IconType } from "components/Icon";
 import { Space } from "components/Space";
 import Link from "next/link";
 import { CardTypeEnum } from "types/enums/card-type";
 
-const premiumBenefits = [
+interface PremiumBenefit {
+	title: string;
+	description: string;
+	icon: IconType;
+}
+
+const premiumBenefits: Array<PremiumBenefit> = [
 	{
 		title: "Contas bancárias ilimitadas",
 		description: "Adicione quantas contas bancárias quiser",
@@ -31,6 +31,11 @@ const premiumBenefits = [
 		title: "Categorias ilimitados",
 		description: "Adicione quantas categorias quiser",
 		icon: "category",
+	},
+	{
+		title: "Transações recorrentes ilimitadas",
+		description: "Adicione quantas transações recorrentes quiser",
+		icon: "clock",
 	},
 	{
 		title: "Gere relatórios",
@@ -56,6 +61,25 @@ const premiumBenefits = [
 	},
 ];
 
+const GOOGLE_LINK_AUTH = process.env["GOOGLE_LINK_AUTH"];
+
+interface LimitItemProp {
+	label: string;
+	curAmount: number;
+	limit: number;
+}
+
+const LimitItem = ({ label, curAmount, limit }: LimitItemProp) => {
+	return (
+		<div className="container-padding rounded border flex flex-col items-center">
+			<div className="text-xs">{label}</div>
+			<div className="text-3xl font-bold">
+				{curAmount}/{limit}
+			</div>
+		</div>
+	);
+};
+
 const Account = () => {
 	return (
 		<>
@@ -65,41 +89,40 @@ const Account = () => {
 				<section>
 					<h2 className="font-bold text-lg text-center">Resumo da sua conta</h2>
 
-					<div className="flex flex-col gap-1 px-4">
-						<span>
-							Contas: {Object.keys(bankAccounts).length}/
-							{plans.free.limits.bankAccounts}
-						</span>
-						<span>
-							Cartões de crédito:{" "}
-							{
+					<div className="grid grid-cols-2 gap-2">
+						<LimitItem
+							label="Contas bancárias"
+							curAmount={Object.keys(bankAccounts).length}
+							limit={plans.free.limits.bankAccounts}
+						/>
+						<LimitItem
+							label="Cartões de crédito"
+							curAmount={
 								Object.values(cards).filter(
 									(c) => c.type === CardTypeEnum.POSTPAID,
 								).length
 							}
-							/{plans.free.limits.postpaidCard}
-						</span>
-						<span>
-							Vales:{" "}
-							{
+							limit={plans.free.limits.postpaidCard}
+						/>
+						<LimitItem
+							label="Vales"
+							curAmount={
 								Object.values(cards).filter(
 									(c) => c.type === CardTypeEnum.PREPAID,
 								).length
 							}
-							/{plans.free.limits.prepaidCard}
-						</span>
-						<span>
-							Categorias: {Object.keys(categories).length}/
-							{plans.free.limits.categories}
-						</span>
-						<span>
-							Transações: {transactions.length}/
-							{plans.free.limits.transactionsPerMonth}
-						</span>
-						<span>
-							Transações recorrentes: {0}/
-							{plans.free.limits.recurrentTransactions}
-						</span>
+							limit={plans.free.limits.prepaidCard}
+						/>
+						<LimitItem
+							label="Categorias"
+							curAmount={Object.keys(categories).length}
+							limit={plans.free.limits.categories}
+						/>
+						<LimitItem
+							label="Transações recorrentes"
+							curAmount={Object.keys(categories).length}
+							limit={plans.free.limits.recurrentTransactions}
+						/>
 					</div>
 				</section>
 
@@ -114,10 +137,12 @@ const Account = () => {
 
 					<div className="flex flex-col gap-2">
 						{premiumBenefits.map(({ title, description, icon }) => (
-							<div key={title} className="flex flex-row items-center gap-2">
-								<Icon icon={icon} size={6} className="mx-4" />
+							<div key={title} className="grid grid-cols-5 items-center gap-2">
+								<div className="col-span-1 flex justify-center">
+									<Icon icon={icon} size={6} />
+								</div>
 
-								<div>
+								<div className="col-span-4">
 									<span className="font-bold">{title}</span>
 									<p className="text-sm">{description}</p>
 								</div>
@@ -133,6 +158,20 @@ const Account = () => {
 					>
 						<Icon icon="crown" className="text-yellow" />
 						Seja premium
+					</Link>
+				</section>
+
+				<div className="divider" />
+
+				<section>
+					<Link
+						type="button"
+						title="Logar com google"
+						className="btn btn-google w-full normal-case"
+						href={GOOGLE_LINK_AUTH || "#"}
+					>
+						<Icon icon="google" className="mr-2" />
+						Vincular conta ao Google
 					</Link>
 				</section>
 

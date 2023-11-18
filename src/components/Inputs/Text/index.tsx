@@ -4,7 +4,7 @@ import { formatBankAccountNumber } from "utils/format";
 import { makeBeforeChangeValue } from "../helpers";
 
 interface Props {
-	id?: string;
+	id: string;
 	label: string;
 	numeric?: boolean;
 	placeholder?: string;
@@ -51,6 +51,7 @@ export function TextInput({
 			</label>
 			<input
 				id={id}
+				name={id}
 				type="text"
 				{...(numeric
 					? {

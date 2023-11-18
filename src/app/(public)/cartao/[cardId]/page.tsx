@@ -20,7 +20,7 @@ const Card = ({ params }: Props) => {
 			<main className="min-h-[100dvh] w-full flex flex-col items-center container-padding gap-2">
 				<img
 					className="rounded-full max-w-24 max-h-24"
-					src={card.iconUrl}
+					src={card.cardProvider.iconUrl}
 					alt={card.name}
 				/>
 
@@ -28,11 +28,14 @@ const Card = ({ params }: Props) => {
 
 				<div className="flex flex-col w-full">
 					<span>Número: **** {card.lastFourDigits}</span>
-					<span>Bandeira: {card.network}</span>
+					<span>Bandeira: {card.cardProvider.network}</span>
 					{card.type === CardTypeEnum.POSTPAID && (
 						<>
 							<span>Dia de vencimento: {card.dueDay}</span>
-							<span>Fecha: {card.statementDays} dias antes do vencimento</span>
+							<span>
+								Fecha: {card.cardProvider.statementDays} dias antes do
+								vencimento
+							</span>
 							<span>Limite: {formatMoney(card.limit)}</span>
 							<span>Pago no: {card.payAt}</span>
 							<span>Pago com: {card.payWithBankAccountId}</span>

@@ -4,12 +4,14 @@ import dayjs from "dayjs";
 import React from "react";
 
 interface Props {
+	id: string;
 	label: string;
 	mode: "time" | "month";
 	value: Date;
+	onChange: (date?: Date) => void;
 }
 
-export function DateInput({ label, mode, value }: Props) {
+export function DateInput({ id, label, mode, value, onChange }: Props) {
 	return (
 		<div className="form-control flex">
 			<label className="label p-0">
@@ -26,7 +28,10 @@ export function DateInput({ label, mode, value }: Props) {
 							format: "MMM YYYY",
 							picker: "month",
 					  })}
+				id={id}
+				name={id}
 				value={dayjs(value)}
+				onChange={(v) => onChange(v?.toDate() || undefined)}
 				locale={locale}
 				allowClear={false}
 				className="input input-bordered date-picker"

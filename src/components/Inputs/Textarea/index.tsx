@@ -3,7 +3,7 @@ import React from "react";
 import { makeBeforeChangeValue } from "../helpers";
 
 interface Props {
-	id?: string;
+	id: string;
 	label: string;
 	placeholder?: string;
 	maxLength?: number;
@@ -33,6 +33,7 @@ export function TextareaInput({
 			</label>
 			<textarea
 				id={id}
+				name={id}
 				placeholder={placeholder || label}
 				maxLength={300}
 				className="input input-bordered mt-2 h-24 py-3 resize-none"

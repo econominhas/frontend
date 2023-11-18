@@ -38,6 +38,7 @@ const AddAccount = () => {
 			<main className="min-h-[100dvh] w-full flex flex-col pt-2 container-padding">
 				<form className="flex justify-center flex-col">
 					<SelectInput
+						id="bankId"
 						label="Instituição financeira"
 						toBeSelectedLabel="Selecionar instituição financeira"
 						data={bankProviders}
@@ -53,6 +54,7 @@ const AddAccount = () => {
 					<Space />
 
 					<TextInput
+						id="accountNumber"
 						label="Número da conta"
 						numeric
 						mask="99999-9"
@@ -64,6 +66,7 @@ const AddAccount = () => {
 					<Space />
 
 					<TextInput
+						id="branch"
 						label="Agência"
 						numeric
 						maxLength={3}
@@ -74,6 +77,7 @@ const AddAccount = () => {
 					<Space />
 
 					<MoneyInput
+						id="balance"
 						label="Saldo"
 						value={state.balance}
 						onChange={(val) => setData("balance", val)}
@@ -82,6 +86,7 @@ const AddAccount = () => {
 					<Space />
 
 					<TextInput
+						id="name"
 						label="Nome"
 						placeholder={
 							state.bankId ? bankProvidersData[state.bankId].name : undefined
