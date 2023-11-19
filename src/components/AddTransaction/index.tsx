@@ -11,9 +11,29 @@ import { TextInput } from "components/Inputs/Text";
 import { TextareaInput } from "components/Inputs/Textarea";
 import { Space } from "components/Space";
 import { useAddTransaction } from "contexts/add-transaction";
+import { CardTypeEnum } from "types/enums/card-type";
 import { TransactionTypeEnum } from "types/enums/transaction-type";
 
 const categories = Object.values(categoriesData);
+const paymentMethods = [
+	...Object.values(cards).map((c) => ({
+		id: `${c.cardId}#CARD`,
+		color: c.cardProvider.color,
+		name: c.cardProvider.name,
+		iconUrl: c.cardProvider.iconUrl,
+		groupLabel:
+			c.cardProvider.type === CardTypeEnum.POSTPAID
+				? "Cartões de crédito"
+				: "Vales",
+	})),
+	...Object.values(bankAccounts).map((b) => ({
+		id: `${b.bankAccountId}#BANK`,
+		color: b.bank.color,
+		name: b.bank.name,
+		iconUrl: b.bank.iconUrl,
+		groupLabel: "Contas bancárias",
+	})),
+];
 
 export const AddTransaction = () => {
 	const {
@@ -116,12 +136,13 @@ export const AddTransaction = () => {
 							label="Método de pagamento"
 							toBeSelectedLabel="Selecione o método de pagamento"
 							value={data.paymentMethodId}
-							data={Object.values(cards)}
+							data={paymentMethods}
 							fieldNames={{
-								id: "cardId",
-								color: "cardProvider.color",
+								id: "id",
+								color: "color",
 								label: "name",
-								iconUrl: "cardProvider.iconUrl",
+								iconUrl: "iconUrl",
+								groupLabel: "groupLabel",
 							}}
 							onChange={(val) => setData("paymentMethodId", val)}
 						/>

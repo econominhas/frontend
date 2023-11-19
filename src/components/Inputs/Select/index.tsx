@@ -1,8 +1,9 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { colors } from "assets/colors";
-import { Icon } from "components/Icon";
+import { Icon, IconType } from "components/Icon";
 import React from "react";
 import { getTextColor } from "utils/color";
+import { val } from "utils/utils";
 
 interface Props<T> {
 	id: string;
@@ -17,6 +18,7 @@ interface Props<T> {
 		color?: Leaves<T>;
 		icon?: Leaves<T>;
 		iconUrl?: Leaves<T>;
+		groupLabel?: Leaves<T>;
 	};
 	onChange: (val: any) => void;
 }
@@ -31,7 +33,26 @@ export function SelectInput<T extends Record<string, any>>({
 	disabled,
 	onChange,
 }: Props<T>) {
-	const selected = data.find((d) => d[fieldNames.id] === value);
+	const selected = data.find((d) => val<string>(d, fieldNames.id) === value);
+
+	const groups: Array<[string, Array<T>]> = fieldNames.groupLabel
+		? Object.entries(
+				data.reduce(
+					(acc, cur) => {
+						const key = val<string>(cur, fieldNames.groupLabel!);
+
+						if (!acc[key]) {
+							acc[key] = [];
+						}
+
+						acc[key].push(cur);
+
+						return acc;
+					},
+					{} as Record<string, Array<T>>,
+				),
+		  )
+		: [["", data]];
 
 	return (
 		<Listbox name={id} disabled={disabled} value={selected} onChange={onChange}>
@@ -65,11 +86,11 @@ export function SelectInput<T extends Record<string, any>>({
 									selected
 										? {
 												backgroundColor: fieldNames.color
-													? selected[fieldNames.color]
+													? val<string>(selected, fieldNames.color)
 													: colors.primary,
 												color: getTextColor(
 													fieldNames.color
-														? selected[fieldNames.color]
+														? val<string>(selected, fieldNames.color)
 														: colors.primary,
 												),
 										  }
@@ -87,17 +108,20 @@ export function SelectInput<T extends Record<string, any>>({
 								{selected && (
 									<span className="flex items-center">
 										{fieldNames.icon && (
-											<Icon icon={selected[fieldNames.icon]} size={2} />
+											<Icon
+												icon={val<IconType>(selected, fieldNames.icon)}
+												size={2}
+											/>
 										)}
 										{fieldNames.iconUrl && (
 											<img
-												src={selected[fieldNames.iconUrl]}
-												alt={selected[fieldNames.label]}
+												src={val<string>(selected, fieldNames.iconUrl)}
+												alt={val<string>(selected, fieldNames.label)}
 												className="max-w-4 max-h-4"
 											/>
 										)}
 										<span className="ml-3 block truncate">
-											{selected[fieldNames.label]}
+											{val<string>(selected, fieldNames.label)}
 										</span>
 									</span>
 								)}
@@ -135,53 +159,68 @@ export function SelectInput<T extends Record<string, any>>({
 									"sm:text-sm",
 								].join(" ")}
 							>
-								{data.map((d) => (
-									<Listbox.Option
-										key={d[fieldNames.id]}
-										className="relative cursor-default select-none py-1 pl-3 pr-12"
-										value={d[fieldNames.id]}
-									>
-										<div
-											className="flex items-center rounded px-4 py-2"
-											style={
-												d[fieldNames.id] === value
-													? {
-															backgroundColor: fieldNames.color
-																? d[fieldNames.color]
-																: colors.primary,
-															color: getTextColor(
-																fieldNames.color
-																	? d[fieldNames.color]
-																	: colors.primary,
-															),
-													  }
-													: {
-															border: `1px solid ${
-																fieldNames.color
-																	? d[fieldNames.color]
-																	: colors.primary
-															}`,
-															color: fieldNames.color
-																? d[fieldNames.color]
-																: colors.primary,
-													  }
-											}
-										>
-											{fieldNames.icon && d[fieldNames.icon] && (
-												<Icon icon={d[fieldNames?.icon]} size={2} />
-											)}
-											{fieldNames.iconUrl && d[fieldNames.iconUrl] && (
-												<img
-													src={d[fieldNames?.iconUrl]}
-													alt={d[fieldNames.label]}
-													className="max-w-4 max-h-4"
-												/>
-											)}
-											<span className="ml-3 block truncate font-semibold">
-												{d[fieldNames?.label]}
-											</span>
-										</div>
-									</Listbox.Option>
+								{groups.map(([groupLabel, items]) => (
+									<>
+										{groupLabel && (
+											<div className="px-3 py-1 bg-gray font-bold">
+												{groupLabel}
+											</div>
+										)}
+
+										{items.map((d) => (
+											<Listbox.Option
+												key={val<string>(d, fieldNames.id)}
+												className="relative cursor-default select-none py-1 pl-3 pr-12"
+												value={d[fieldNames.id]}
+											>
+												<div
+													className="flex items-center rounded px-4 py-2"
+													style={
+														val<string>(d, fieldNames.id) === value
+															? {
+																	backgroundColor: fieldNames.color
+																		? val<string>(d, fieldNames.color)
+																		: colors.primary,
+																	color: getTextColor(
+																		fieldNames.color
+																			? val<string>(d, fieldNames.color)
+																			: colors.primary,
+																	),
+															  }
+															: {
+																	border: `1px solid ${
+																		fieldNames.color
+																			? val<string>(d, fieldNames.color)
+																			: colors.primary
+																	}`,
+																	color: fieldNames.color
+																		? val<string>(d, fieldNames.color)
+																		: colors.primary,
+															  }
+													}
+												>
+													{fieldNames.icon &&
+														val<IconType>(d, fieldNames.icon) && (
+															<Icon
+																icon={val<IconType>(d, fieldNames.icon)}
+																size={2}
+															/>
+														)}
+													{fieldNames.iconUrl &&
+														val<string>(d, fieldNames.iconUrl) && (
+															<img
+																src={val<string>(d, fieldNames.iconUrl)}
+																alt={val<string>(d, fieldNames.label)}
+																className="max-w-4 max-h-4"
+															/>
+														)}
+													<span className="ml-3 block truncate font-semibold">
+														{val<string>(d, fieldNames.label)}
+													</span>
+												</div>
+											</Listbox.Option>
+										))}
+									</>
 								))}
 							</Listbox.Options>
 						</Transition>
