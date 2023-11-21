@@ -14,11 +14,15 @@ interface Props {
 
 const getCardType = (type: CardTypeEnum) => {
 	switch (type) {
-		case CardTypeEnum.POSTPAID:
+		case CardTypeEnum.CREDIT:
 		default:
-			return "Pós-pago";
-		case CardTypeEnum.PREPAID:
-			return "Pré-pago";
+			return "Crédito";
+		case CardTypeEnum.VA:
+			return "Vale Alimentação";
+		case CardTypeEnum.VR:
+			return "Vale Refeição";
+		case CardTypeEnum.VT:
+			return "Vale Transporte";
 	}
 };
 

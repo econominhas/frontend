@@ -67,7 +67,7 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 						dataKey="value"
 					>
 						<Cell fill={color(expensesPercentage)} />
-						<Cell fill="#DCDCDC" />
+						<Cell fill={colors.gray} />
 					</Pie>
 				</PieChart>
 
@@ -76,7 +76,7 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 						<div
 							className="flex flex-row gap-2 w-3/4 items-center p-2 rounded-l"
 							style={{
-								backgroundColor: "#DCDCDC",
+								backgroundColor: colors.gray,
 							}}
 						>
 							<span>Gasto total</span>
@@ -85,7 +85,7 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 						<div
 							className="w-2/5 flex flex-row items-center justify-end p-2 rounded-r"
 							style={{
-								backgroundColor: "#DCDCDC75",
+								backgroundColor: `${colors.gray}75`,
 							}}
 						>
 							<span>{formatMoney(totalExpenses)}</span>
@@ -96,7 +96,7 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 						<div
 							className="flex flex-row gap-2 w-3/4 items-center p-2 rounded-l"
 							style={{
-								backgroundColor: "#DCDCDC",
+								backgroundColor: colors.gray,
 							}}
 						>
 							<span>Gasto planejado</span>
@@ -105,7 +105,7 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 						<div
 							className="w-2/5 flex flex-row items-center justify-end p-2 rounded-r"
 							style={{
-								backgroundColor: "#DCDCDC75",
+								backgroundColor: `${colors.gray}75`,
 							}}
 						>
 							<span>{formatMoney(totalBudget)}</span>
@@ -116,7 +116,7 @@ export const BudgetCard = ({ budget, expenses }: Props) => {
 						<div
 							className="flex flex-row gap-2 w-3/4 items-center p-2 rounded-l"
 							style={{
-								backgroundColor: "#DCDCDC",
+								backgroundColor: colors.gray,
 							}}
 						>
 							<span>Saldo</span>

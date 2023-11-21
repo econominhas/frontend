@@ -25,7 +25,7 @@ interface BaseCard {
 
 // Credit cards
 export interface PostpaidCard extends BaseCard {
-	type: CardTypeEnum.POSTPAID;
+	type: CardTypeEnum.CREDIT;
 	dueDay: number;
 	limit: number;
 	payAt: PayAtEnum;
@@ -34,7 +34,7 @@ export interface PostpaidCard extends BaseCard {
 
 // VA, VR, VT
 export interface PrepaidCard extends BaseCard {
-	type: CardTypeEnum.PREPAID;
+	type: CardTypeEnum.VA | CardTypeEnum.VR | CardTypeEnum.VT;
 	balance: number;
 }
 

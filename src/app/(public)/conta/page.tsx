@@ -3,7 +3,7 @@ import { Header } from "components/Header";
 import { Icon, IconType } from "components/Icon";
 import { Space } from "components/Space";
 import Link from "next/link";
-import { CardTypeEnum } from "types/enums/card-type";
+import { CardTypeEnum, isPrepaid } from "types/enums/card-type";
 
 interface PremiumBenefit {
 	title: string;
@@ -28,28 +28,28 @@ const premiumBenefits: Array<PremiumBenefit> = [
 		icon: "ticket",
 	},
 	{
-		title: "Categorias ilimitados",
+		title: "Categorias ilimitadas",
 		description: "Adicione quantas categorias quiser",
 		icon: "category",
 	},
 	{
-		title: "Transações recorrentes ilimitadas",
+		title: "(Em breve) Transações recorrentes ilimitadas",
 		description: "Adicione quantas transações recorrentes quiser",
 		icon: "clock",
 	},
 	{
-		title: "Gere relatórios",
+		title: "(Em breve) Gere relatórios",
 		description:
 			"Gere relatórios dos seus gastos, orçamentos e muito mais, em diversos formatos",
 		icon: "pdf",
 	},
 	{
-		title: "Tags",
+		title: "(Em breve) Tags",
 		description: "Adicione tags as suas transações",
 		icon: "tag",
 	},
 	{
-		title: "Lembretes",
+		title: "(Em breve) Lembretes",
 		description: "Receba lembretes para pagar suas contas",
 		icon: "bell",
 	},
@@ -99,7 +99,7 @@ const Account = () => {
 							label="Cartões de crédito"
 							curAmount={
 								Object.values(cards).filter(
-									(c) => c.type === CardTypeEnum.POSTPAID,
+									(c) => c.type === CardTypeEnum.CREDIT,
 								).length
 							}
 							limit={plans.free.limits.postpaidCard}
@@ -107,9 +107,7 @@ const Account = () => {
 						<LimitItem
 							label="Vales"
 							curAmount={
-								Object.values(cards).filter(
-									(c) => c.type === CardTypeEnum.PREPAID,
-								).length
+								Object.values(cards).filter((c) => isPrepaid(c.type)).length
 							}
 							limit={plans.free.limits.prepaidCard}
 						/>

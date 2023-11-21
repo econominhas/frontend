@@ -12,7 +12,7 @@ import { TextInput } from "components/Inputs/Text";
 import { Space } from "components/Space";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { CardTypeEnum } from "types/enums/card-type";
+import { CardTypeEnum, isPostpaid, isPrepaid } from "types/enums/card-type";
 import { PayAtEnum } from "types/enums/pay-at";
 
 const bankAccounts = Object.values(bankAccountsData);
@@ -84,7 +84,7 @@ const AddCard = () => {
 
 					<Space />
 
-					{cardType === CardTypeEnum.POSTPAID && (
+					{isPostpaid(cardType) && (
 						<>
 							<SelectInput
 								id="dueDay"
@@ -155,7 +155,7 @@ const AddCard = () => {
 						</>
 					)}
 
-					{cardType === CardTypeEnum.PREPAID && (
+					{isPrepaid(cardType) && (
 						<>
 							<MoneyInput
 								id="balance"

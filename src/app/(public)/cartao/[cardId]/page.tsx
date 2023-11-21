@@ -1,7 +1,8 @@
 import { cards } from "assets/data";
 import { Header } from "components/Header";
 import { Icon } from "components/Icon";
-import { CardTypeEnum } from "types/enums/card-type";
+import { PostpaidCard, PrepaidCard } from "types/card";
+import { isPostpaid, isPrepaid } from "types/enums/card-type";
 import { formatMoney } from "utils/format";
 
 interface Props {
@@ -29,21 +30,23 @@ const Card = ({ params }: Props) => {
 				<div className="flex flex-col w-full">
 					<span>Número: **** {card.lastFourDigits}</span>
 					<span>Bandeira: {card.cardProvider.network}</span>
-					{card.type === CardTypeEnum.POSTPAID && (
+					{isPostpaid(card.type) && (
 						<>
-							<span>Dia de vencimento: {card.dueDay}</span>
+							<span>Dia de vencimento: {(card as PostpaidCard).dueDay}</span>
 							<span>
-								Fecha: {card.cardProvider.statementDays} dias antes do
-								vencimento
+								Fecha: {(card as PostpaidCard).cardProvider.statementDays} dias
+								antes do vencimento
 							</span>
-							<span>Limite: {formatMoney(card.limit)}</span>
-							<span>Pago no: {card.payAt}</span>
-							<span>Pago com: {card.payWithBankAccountId}</span>
+							<span>Limite: {formatMoney((card as PostpaidCard).limit)}</span>
+							<span>Pago no: {(card as PostpaidCard).payAt}</span>
+							<span>
+								Pago com: {(card as PostpaidCard).payWithBankAccountId}
+							</span>
 						</>
 					)}
-					{card.type === CardTypeEnum.PREPAID && (
+					{isPrepaid(card.type) && (
 						<>
-							<span>Saldo: {formatMoney(card.balance)}</span>
+							<span>Saldo: {formatMoney((card as PrepaidCard).balance)}</span>
 						</>
 					)}
 				</div>

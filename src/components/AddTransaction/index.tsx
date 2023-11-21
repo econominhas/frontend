@@ -16,16 +16,6 @@ import { TransactionTypeEnum } from "types/enums/transaction-type";
 
 const categories = Object.values(categoriesData);
 const paymentMethods = [
-	...Object.values(cards).map((c) => ({
-		id: `${c.cardId}#CARD`,
-		color: c.cardProvider.color,
-		name: c.cardProvider.name,
-		iconUrl: c.cardProvider.iconUrl,
-		groupLabel:
-			c.cardProvider.type === CardTypeEnum.POSTPAID
-				? "Cartões de crédito"
-				: "Vales",
-	})),
 	...Object.values(bankAccounts).map((b) => ({
 		id: `${b.bankAccountId}#BANK`,
 		color: b.bank.color,
@@ -33,6 +23,42 @@ const paymentMethods = [
 		iconUrl: b.bank.iconUrl,
 		groupLabel: "Contas bancárias",
 	})),
+	...Object.values(cards)
+		.filter((c) => c.type === CardTypeEnum.CREDIT)
+		.map((c) => ({
+			id: `${c.cardId}#CARD`,
+			color: c.cardProvider.color,
+			name: c.cardProvider.name,
+			iconUrl: c.cardProvider.iconUrl,
+			groupLabel: "Cartões de crédito",
+		})),
+	...Object.values(cards)
+		.filter((c) => c.type === CardTypeEnum.VA)
+		.map((c) => ({
+			id: `${c.cardId}#CARD`,
+			color: c.cardProvider.color,
+			name: c.cardProvider.name,
+			iconUrl: c.cardProvider.iconUrl,
+			groupLabel: "Vales Alimentação",
+		})),
+	...Object.values(cards)
+		.filter((c) => c.type === CardTypeEnum.VR)
+		.map((c) => ({
+			id: `${c.cardId}#CARD`,
+			color: c.cardProvider.color,
+			name: c.cardProvider.name,
+			iconUrl: c.cardProvider.iconUrl,
+			groupLabel: "Vales Refeição",
+		})),
+	...Object.values(cards)
+		.filter((c) => c.type === CardTypeEnum.VT)
+		.map((c) => ({
+			id: `${c.cardId}#CARD`,
+			color: c.cardProvider.color,
+			name: c.cardProvider.name,
+			iconUrl: c.cardProvider.iconUrl,
+			groupLabel: "Vales Transporte",
+		})),
 ];
 
 export const AddTransaction = () => {

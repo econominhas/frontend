@@ -137,7 +137,7 @@ export const cardProviders: Record<string, CardProvider> = {
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2019/07/xp-investimentos-logo-8.png",
 		color: colors.xpInvestimentos,
-		type: CardTypeEnum.POSTPAID,
+		type: CardTypeEnum.CREDIT,
 		network: NetworkEnum.VISA,
 		statementDays: 14,
 		availableDueDates: ["05", "10", "15"],
@@ -147,7 +147,7 @@ export const cardProviders: Record<string, CardProvider> = {
 		name: "Nubank",
 		iconUrl: bankProviders.nubank.iconUrl,
 		color: bankProviders.nubank.color,
-		type: CardTypeEnum.POSTPAID,
+		type: CardTypeEnum.CREDIT,
 		network: NetworkEnum.MASTERCARD,
 		statementDays: 14,
 		availableDueDates: ["05", "10", "15"],
@@ -158,7 +158,7 @@ export const cardProviders: Record<string, CardProvider> = {
 		iconUrl:
 			"https://logodownload.org/wp-content/uploads/2017/09/alelo-logo-1-599x393.png",
 		color: colors.aleloRefeicao,
-		type: CardTypeEnum.PREPAID,
+		type: CardTypeEnum.VR,
 		network: NetworkEnum.ELO,
 	},
 };
@@ -169,7 +169,7 @@ export const cards: Record<string, Card> = {
 		accountId: "foo1",
 		cardProviderId: "xpInfinityOne",
 		cardProvider: cardProviders["xpInfinityOne"],
-		type: CardTypeEnum.POSTPAID,
+		type: CardTypeEnum.CREDIT,
 		name: "Xp Investimentos",
 
 		// Credit cards
@@ -184,7 +184,7 @@ export const cards: Record<string, Card> = {
 		accountId: "foo1",
 		cardProviderId: "nubank",
 		cardProvider: cardProviders["nubank"],
-		type: CardTypeEnum.POSTPAID,
+		type: CardTypeEnum.CREDIT,
 		name: "Nubank",
 
 		// Credit cards
@@ -199,7 +199,7 @@ export const cards: Record<string, Card> = {
 		accountId: "foo1",
 		cardProviderId: "aleloRefeicao",
 		cardProvider: cardProviders["aleloRefeicao"],
-		type: CardTypeEnum.PREPAID,
+		type: CardTypeEnum.VR,
 		name: "Alelo VR",
 		lastFourDigits: "1234",
 
