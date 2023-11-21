@@ -26,7 +26,9 @@ import {
 	FaFileInvoiceDollar,
 	FaPlus,
 	FaArrowLeft,
+	FaCalendarAlt,
 } from "react-icons/fa";
+import { FaComputer, FaSackDollar } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { GrConnect } from "react-icons/gr";
 import { HiMiniEyeSlash } from "react-icons/hi2";
@@ -87,6 +89,9 @@ const icons = {
 	profile: BsFillPersonFill,
 	"eye-slash": HiMiniEyeSlash,
 	clock: ImClock2,
+	computer: FaComputer,
+	calendar: FaCalendarAlt,
+	"money-bag": FaSackDollar,
 };
 
 export type IconType = keyof typeof icons;

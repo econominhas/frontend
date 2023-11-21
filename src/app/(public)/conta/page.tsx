@@ -42,10 +42,27 @@ const premiumBenefits: Array<PremiumBenefit> = [
 		icon: "clock",
 	},
 	{
+		title: "(Em breve) Orçamentos ilimitados",
+		description:
+			"Altere entre multiplos orçamentos sem perder os dados de nenhum deles, faça comparações entre os orçamentos e veja o que é melhor para sua vida financeira",
+		icon: "money-bag",
+	},
+	{
+		title: "(Em breve) Acesso a versão desktop",
+		description: "Tenha controle das suas finanças no seu computador",
+		icon: "computer",
+	},
+	{
 		title: "(Em breve) Gere relatórios",
 		description:
 			"Gere relatórios dos seus gastos, orçamentos e muito mais, em diversos formatos",
 		icon: "pdf",
+	},
+	{
+		title: "Controle seus orçamentos por mês",
+		description:
+			"Altere livremente o orçamento de apenas 1 mês, ao inves de todos os meses do ano",
+		icon: "calendar",
 	},
 	{
 		title: "(Em breve) Tags",
