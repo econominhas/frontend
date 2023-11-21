@@ -1,9 +1,13 @@
+"use client";
+
 import { bankAccounts, cards, categories, plans } from "assets/data";
 import { Header } from "components/Header";
 import { Icon, IconType } from "components/Icon";
+import { SelectInput } from "components/Inputs/Select";
 import { Space } from "components/Space";
 import Link from "next/link";
 import { CardTypeEnum, isPrepaid } from "types/enums/card-type";
+import { TimezoneEnum } from "types/enums/timezone";
 
 interface PremiumBenefit {
 	title: string;
@@ -165,12 +169,30 @@ const Account = () => {
 					<Link
 						type="button"
 						title="Logar com google"
-						className="btn btn-google w-full normal-case"
+						className="btn btn-google disabled w-full normal-case"
 						href={GOOGLE_LINK_AUTH || "#"}
 					>
 						<Icon icon="google" className="mr-2" />
 						Vincular conta ao Google
 					</Link>
+
+					<Space />
+
+					<SelectInput
+						id="timezone"
+						label="Usar horario de"
+						toBeSelectedLabel="Selecionar cartão"
+						data={Object.values(TimezoneEnum).map((t) => ({
+							title: t.split("/").pop()!.replace(/_/g, " "),
+							value: t,
+						}))}
+						fieldNames={{
+							id: "value",
+							label: "title",
+						}}
+						value={TimezoneEnum["America/Sao_Paulo"]}
+						onChange={() => {}}
+					/>
 				</section>
 
 				<div className="divider" />

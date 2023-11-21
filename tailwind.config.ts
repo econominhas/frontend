@@ -44,6 +44,11 @@ module.exports = {
 					".btn-google": {
 						"background-color": "#ffffff",
 						border: "1px solid #747775",
+
+						"&.disabled": {
+							"background-color": "#30303020",
+							"pointer-events": "none",
+						},
 					},
 					".btn-google:hover": {
 						"background-color": "#30303008",
